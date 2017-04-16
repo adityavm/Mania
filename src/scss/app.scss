@@ -1,14 +1,19 @@
+/**
+ * High level layout definitions
+ * Dimensions, Margins and Padding only
+ */
+
 #main {
   display: flex;
   min-height: 100vh;
 }
 
 // layout
-#saved-queries {
+#sidebar {
   width: 220px;
 }
 
-#editor {
+#steps {
   display: flex;
   flex-wrap: wrap;
   align-items: stretch;

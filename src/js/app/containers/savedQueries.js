@@ -1,8 +1,7 @@
 import React from "react";
-import "scss/containers/savedQueries";
 
-const SavedQueries = ({}) => (
+const SavedQueries = () => (
   <div id="saved-queries"></div>
 );
 
-module.exports = SavedQueries;
+export default SavedQueries;

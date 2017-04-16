@@ -1,19 +1,26 @@
+// main
 import React from "react";
-import SavedQueries from "./containers/savedQueries";
-import Query from "./containers/query";
-import Payload from "./containers/payload";
-import Repl from "./containers/repl";
-import "scss/app";
 
-const App = ({}) => (
+// containers
+import CurrentQuery from "./containers/currentQuery";
+import SavedQueries from "./containers/savedQueries";
+import Step from "./containers/step";
+
+// styles
+import "scss/style";
+import "scss/app";
+import "scss/containers/sidebar";
+
+const App = () => (
   <div id="main">
-    <SavedQueries></SavedQueries>
-    <div id="editor">
-      <Query></Query>
-      <Payload></Payload>
-      <Repl></Repl>
+    <div id="sidebar">
+      <CurrentQuery />
+      <SavedQueries />
+    </div>
+    <div id="steps">
+      <Step />
     </div>
   </div>
 );
 
-module.exports = App;
+export default App;
