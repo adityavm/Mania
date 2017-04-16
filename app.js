@@ -1,46 +1,26 @@
-var express = require("express");
-var
-  app = express();
-  port = 3000;
+const
+  electron = require("electron");
+  app = electron.app;
+  BrowserWindow = electron.BrowserWindow;
 
-var __dist = __dirname + "/dist";
+  path = require("path");
+  url = require("url");
 
-// static files
-app.use(express.static("./dist"));
+let mainWindow;
 
-// main route
-app.get("/", function (req, res) {
-  var opts = {
-    root: __dist,
-    dotfiles: "deny",
-  };
-  res.sendFile("index.html", opts);
-  console.log("got GET request");
-});
+function createWindow () {
+  // Create the browser window.
+  mainWindow = new BrowserWindow({width: 1024, height: 768});
 
-app.get("/api/:api/:filter?/:value?", function(req, res) {
-  try {
-    var api = require("./api/" + req.params.api);
-  } catch (e) {
-    res.status(404).send("Oops");
-    console.log("errored", e);
-    return;
-  }
+  mainWindow.loadURL(url.format({
+    pathname: path.join(__dirname, "dist/index.html"),
+    protocol: "file:",
+    slashes: true,
+  }));
 
-  res.set("Access-Control-Allow-Origin", "*");
+  mainWindow.on("closed", function () {
+    mainWindow = null;
+  });
+}
 
-  // set params
-  var params = {};
-  if (req.params.filter && req.params.value) {
-    var val = Number.isNaN(parseInt(req.params.value)) ? req.params.value : parseInt(req.params.value);
-    params[req.params.filter] = val;
-  }
-
-  console.log("serving /%s", req.params.api);
-  api.respondTo(res, params);
-});
-
-// start server
-app.listen(port, function () {
-  console.log("listening on %d", port);
-});
+app.on("ready", createWindow);

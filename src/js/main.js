@@ -3,7 +3,17 @@ console.log("%calive!", `color:${random[Math.floor(Math.random() * (random.lengt
 
 import React from "react";
 import { render } from "react-dom";
+import { Provider } from "react-redux";
+import { createStore } from "redux";
+import AppState from "js/reducers/app";
 import App from "js/app/app";
 import "scss/style";
 
-render(<App />, document.querySelector("app"));
+let store = createStore(AppState);
+
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.querySelector("app")
+);
