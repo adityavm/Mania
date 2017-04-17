@@ -4,7 +4,7 @@ import React from "react";
 // containers
 import CurrentQuery from "./containers/currentQuery";
 import SavedQueries from "./containers/savedQueries";
-import Step from "./containers/step";
+import StepEditor from "./containers/stepEditor";
 
 // styles
 import "scss/style";
@@ -18,7 +18,7 @@ const App = () => (
       <SavedQueries />
     </div>
     <div id="steps">
-      <Step />
+      <StepEditor />
     </div>
   </div>
 );

@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import addStep from "../actions/addStep";
 
 // components
+import QueryStep from "../components/queryStep";
 import Button from "../components/button";
 
 // styles
@@ -24,25 +25,16 @@ const mapDispatchToProps = dispatch => ({
   addStep: () => dispatch(addStep()),
 });
 
-const currentQuery = ({ steps, currentStep, addStep }) => {
-  console.log(steps);
-
-  return (
-    <div id="current-query">
-      <div className="steps">
-        <span className="label">Steps</span>
-        <span className="value">{steps.length}</span>
-      </div>
-      <div className="buttons">
-        <Button type="text" onClick={addStep} label="Add New Step" />
-      </div>
+const currentQuery = ({ steps, currentStep, addStep }) => (
+  <div id="current-query">
+    {steps.map((step, idx) => <QueryStep step={step} key={idx} />)}
+    <div className="buttons">
+      <Button type="text" onClick={addStep} label="Add New Step" />
     </div>
-  );
-};
+  </div>
+);
 
-const CurrentQuery = connect(
+export default connect(
   mapStateToProps,
   mapDispatchToProps,
 )(currentQuery);
-
-export default CurrentQuery;

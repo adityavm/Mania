@@ -3,7 +3,7 @@ import "scss/containers/payload";
 
 const Payload = ({}) => (
   <div id="payload">
-    <textarea></textarea>
+    <textarea placeholder="{ ... }"></textarea>
   </div>
 );
 
