@@ -4,7 +4,7 @@ import ops from "immutable-ops";
 const { splice } = ops;
 
 // return new state object with new val for key for current step
-const replace = (state = {}, key = "", val = "") => {
+const replaceInCurrentStep = (state = {}, key = "", val = "") => {
   const
     query = state.queries[state.currentQuery],
     step = query.steps[query.currentStep],
@@ -39,7 +39,7 @@ const createStateObject = () => ({
 });
 
 // exports
-exports.replace = replace;
+exports.replaceInCurrentStep = replaceInCurrentStep;
 exports.createStepObject = createStepObject;
 exports.createQueryObject = createQueryObject;
 exports.createStateObject = createStateObject;

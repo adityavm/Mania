@@ -6,7 +6,7 @@ import {  ADD_STEP,
           ADD_QUERY,
           SET_STEP_VALUE,
           TOGGLE_STEP_METHOD   } from "../app/actions/constants";
-import {  replace,
+import {  replaceInCurrentStep,
           createStepObject,
           createQueryObject,
           createStateObject   } from "./helpers";
@@ -31,7 +31,7 @@ const addQuery = oldState => {
   return state;
 };
 
-const setStepValue = (state, key, val) => replace(state, key, val);
+const setCurrentStepValue = (state, key, val) => replaceInCurrentStep(state, key, val);
 
 const toggleStepMethod = state => {
   const
@@ -39,7 +39,7 @@ const toggleStepMethod = state => {
     step = query.steps[query.currentStep];
 
   const newMethod = step.method === "POST" ? "GET" : "POST";
-  return replace(state, "method", newMethod);
+  return replaceInCurrentStep(state, "method", newMethod);
 };
 
 // state
@@ -49,7 +49,7 @@ const AppState = (state, action) => {
 
   if (action.type === ADD_STEP)     return addStep(newState);
   if (action.type === ADD_QUERY)    return addQuery(newState);
-  if (action.type === SET_STEP_VALUE) return setStepValue(newState, action.key, action.value);
+  if (action.type === SET_STEP_VALUE) return setCurrentStepValue(newState, action.key, action.value);
   if (action.type === TOGGLE_STEP_METHOD) return toggleStepMethod(newState);
 
   return newState;

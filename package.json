@@ -33,10 +33,9 @@
   },
   "devDependencies": {},
   "scripts": {
-    "run": "./node_modules/.bin/electron .",
+    "app": "./node_modules/.bin/electron .",
     "test": "./node_modules/.bin/mocha",
     "build": "./node_modules/.bin/webpack",
-    "app": "./node_modules/.bin/forever start app.js",
     "dev": "./node_modules/.bin/forever start ./node_modules/.bin/webpack-dev-server --content-base dist/",
     "start": "npm run-script app; npm run-script dev; npm run-script db;",
     "end": "./node_modules/.bin/forever stopall; printf '\n\\e[41mNOTE\\e[49m\\e[31m Manually kill MongoDB server\\e[90m (ps aux | grep mongod)\n'"

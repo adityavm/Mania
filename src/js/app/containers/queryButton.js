@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import _ from "../../utils";
 
 // app
-import setStepValue from "../actions/setStepValue";
+import setCurrentStepValue from "../actions/setCurrentStepValue";
 import Button from "../components/button";
 
 // style
@@ -33,7 +33,7 @@ const mapDispatchToProps = dispatch => ({
   executeQuery: (url, payload) => {
     executeQuery(url, payload)
     .then(
-      d => dispatch(setStepValue("response", JSON.stringify(d))),
+      d => dispatch(setCurrentStepValue("response", JSON.stringify(d))),
     );
   },
 });
