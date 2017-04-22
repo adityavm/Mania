@@ -3,7 +3,7 @@ const createStepObject = (step = {}) => ({
   method: step.method || "POST",
   url: step.url || "",
   payload: step.payload || "",
-  response: step.respone || "",
+  response: step.response || "",
   modifier: step.modifier || "",
 });
 

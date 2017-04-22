@@ -18,17 +18,4 @@
   flex-wrap: wrap;
   align-items: stretch;
   flex: 1;
-
-  #query {
-    flex: none;
-    width: 100%;
-  }
-
-  #payload {
-    flex: 1;
-  }
-
-  #repl {
-    flex: 1;
-  }
 }

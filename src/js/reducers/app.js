@@ -4,7 +4,8 @@ import { combineReducers } from "redux";
 // app
 import { ADD_STEP,
          ADD_QUERY,
-         SET_STEP_URL } from "../app/actions/constants";
+         SET_STEP_URL,
+         SET_QUERY_RESPONSE } from "../app/actions/constants";
 import { createStepObject,
          createQueryObject,
          createStateObject } from "./helpers";
@@ -42,6 +43,19 @@ const setStepUrl = (oldState, url) => {
   return state;
 };
 
+const setQueryResponse = (oldState, response) => {
+  const
+    state = { ...oldState },
+    query = state.queries[state.currentQuery],
+    step = query.steps[query.currentStep];
+
+  // update query steps
+  query.steps = [...query.steps];
+  query.steps[query.currentStep] = createStepObject({...step, response});;
+
+  return state;
+};
+
 // state
 
 const AppState = (state, action) => {
@@ -50,6 +64,7 @@ const AppState = (state, action) => {
   if (action.type === ADD_STEP)     return addStep(newState);
   if (action.type === ADD_QUERY)    return addQuery(newState);
   if (action.type === SET_STEP_URL) return setStepUrl(newState, action.url);
+  if (action.type === SET_QUERY_RESPONSE) return setQueryResponse(newState, action.response);
 
   return newState;
 };

@@ -11,7 +11,7 @@
     padding: 5px;
     border-radius: 3px;
     background-color: rgba(0, 0, 0, 0.25);
-    color: $txt-light;
+    color: $text-light;
     font-size: 11px;
 
     &.method {
@@ -23,7 +23,7 @@
   }
 
   .value {
-    color: $txt-light;
+    color: $text-light;
     font-size: 12px;
     margin: 5px;
     overflow: hidden;

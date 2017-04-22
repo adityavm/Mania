@@ -1,5 +1,14 @@
 @import "../core/vars";
 
 #repl {
+  flex: 1;
+  max-width: 50%;
   border-left: 1px solid $stroke-grey;
+  overflow: auto;
+  font: 11px / 1.4em Hack, Inconsolata, Consolas, Monaco, monospace;
+  padding: 5px;
+
+  > ul {
+    margin: 0 5px !important;
+  }
 }

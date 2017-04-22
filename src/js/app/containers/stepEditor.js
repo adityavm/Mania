@@ -1,7 +1,8 @@
 // main
 import React from "react";
 
-// components
+// app
+import QueryButton from "./queryButton";
 import Query from "./query";
 import Payload from "./payload";
 import Repl from "./repl";
@@ -11,9 +12,14 @@ import "scss/containers/step";
 
 const Step = () => (
   <div id="step-editor">
-    <Query></Query>
-    <Payload></Payload>
-    <Repl></Repl>
+    <div className="top">
+      <Query></Query>
+      <QueryButton />
+    </div>
+    <div className="bottom">
+      <Payload></Payload>
+      <Repl></Repl>
+    </div>
   </div>
 );
 
