@@ -8,6 +8,11 @@
   font: 11px / 1.4em Hack, Inconsolata, Consolas, Monaco, monospace;
   padding: 5px;
 
+  .empty {
+    font-style: italic;
+    color: $text-mid;
+  }
+
   > ul {
     margin: 0 5px !important;
   }

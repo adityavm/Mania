@@ -3,7 +3,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 // app
-import setStepUrl from "../actions/setStepUrl";
+import setStepValue from "../actions/setStepValue";
 import MethodButton from "./methodButton";
 
 // style
@@ -22,7 +22,7 @@ const mapStateToProps = (state = {}) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  setUrl: event => dispatch(setStepUrl(event.target.value)),
+  setUrl: event => dispatch(setStepValue("url", event.target.value)),
 });
 
 // render

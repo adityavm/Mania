@@ -3,7 +3,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 // app
-import toggleQueryMethod from "../actions/toggleQueryMethod";
+import toggleStepMethod from "../actions/toggleStepMethod";
 import Button from "../components/button";
 
 // styles
@@ -22,16 +22,16 @@ const mapStateToProps = (state = {}) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  toggleQueryMethod: () => dispatch(toggleQueryMethod()),
+  toggleStepMethod: () => dispatch(toggleStepMethod()),
 });
 
 // render
 
-const MethodButton = ({ method, toggleQueryMethod }) => {
+const MethodButton = ({ method, toggleStepMethod }) => {
   const color = method === "POST" ? "orange" : "green";
 
   return (
-    <Button type="text" color={color} onClick={toggleQueryMethod} label={method} />
+    <Button type="text" color={color} onClick={toggleStepMethod} label={method} />
   );
 };
 

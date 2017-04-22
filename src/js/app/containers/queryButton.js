@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import _ from "../../utils";
 
 // app
-import setQueryResponse from "../actions/setQueryResponse";
+import setStepValue from "../actions/setStepValue";
 import Button from "../components/button";
 
 // style
@@ -13,7 +13,6 @@ import "scss/components/button";
 // internal
 
 const executeQuery = (url, payload) => {
-  console.log("calling", url, payload);
   return _.xhr(url, payload);
 };
 
@@ -34,7 +33,7 @@ const mapDispatchToProps = dispatch => ({
   executeQuery: (url, payload) => {
     executeQuery(url, payload)
     .then(
-      d => dispatch(setQueryResponse(d.data)),
+      d => dispatch(setStepValue("response", JSON.stringify(d))),
     );
   },
 });

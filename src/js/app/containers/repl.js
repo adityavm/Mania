@@ -34,7 +34,7 @@ const mapStateToProps = (state = {}) => {
     query = state.queries[state.currentQuery],
     step = query.steps[query.currentStep];
 
-  let response = step.response ? JSON.parse(step.response) : {};
+  let response = step.response ? JSON.parse(step.response) : null;
 
   return {
     response,
@@ -43,7 +43,8 @@ const mapStateToProps = (state = {}) => {
 
 const Repl = ({ response }) => (
   <div id="repl">
-    <JSONTree data={response} theme={theme} />
+    {!response && <span className="empty">Nothing yet</span>}
+    {response && <JSONTree data={response} theme={theme} />}
   </div>
 );
 

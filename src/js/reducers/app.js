@@ -2,14 +2,14 @@
 import { combineReducers } from "redux";
 
 // app
-import { ADD_STEP,
-         ADD_QUERY,
-         SET_STEP_URL,
-         SET_QUERY_RESPONSE,
-         TOGGLE_QUERY_METHOD } from "../app/actions/constants";
-import { createStepObject,
-         createQueryObject,
-         createStateObject } from "./helpers";
+import {  ADD_STEP,
+          ADD_QUERY,
+          SET_STEP_VALUE,
+          TOGGLE_STEP_METHOD   } from "../app/actions/constants";
+import {  replace,
+          createStepObject,
+          createQueryObject,
+          createStateObject   } from "./helpers";
 
 // modifiers
 
@@ -31,45 +31,15 @@ const addQuery = oldState => {
   return state;
 };
 
-const setStepUrl = (oldState, url) => {
+const setStepValue = (state, key, val) => replace(state, key, val);
+
+const toggleStepMethod = state => {
   const
-    state = { ...oldState },
-    query = state.queries[state.currentQuery],
-    step = query.steps[query.currentStep];
-
-  // update query steps
-  query.steps = [...query.steps];
-  query.steps[query.currentStep] = createStepObject({...step, url});;
-
-  return state;
-};
-
-const setQueryResponse = (oldState, response) => {
-  const
-    state = { ...oldState },
-    query = state.queries[state.currentQuery],
-    step = query.steps[query.currentStep];
-
-  // update query steps
-  query.steps = [...query.steps];
-  query.steps[query.currentStep] = createStepObject({...step, response});;
-
-  return state;
-};
-
-const toggleQueryMethod = (oldState) => {
-  const
-    state = { ...oldState },
     query = state.queries[state.currentQuery],
     step = query.steps[query.currentStep];
 
   const newMethod = step.method === "POST" ? "GET" : "POST";
-
-  // update query steps
-  query.steps = [...query.steps];
-  query.steps[query.currentStep] = createStepObject({...step, method: newMethod});;
-
-  return state;
+  return replace(state, "method", newMethod);
 };
 
 // state
@@ -79,9 +49,8 @@ const AppState = (state, action) => {
 
   if (action.type === ADD_STEP)     return addStep(newState);
   if (action.type === ADD_QUERY)    return addQuery(newState);
-  if (action.type === SET_STEP_URL) return setStepUrl(newState, action.url);
-  if (action.type === SET_QUERY_RESPONSE) return setQueryResponse(newState, action.response);
-  if (action.type === TOGGLE_QUERY_METHOD) return toggleQueryMethod(newState);
+  if (action.type === SET_STEP_VALUE) return setStepValue(newState, action.key, action.value);
+  if (action.type === TOGGLE_STEP_METHOD) return toggleStepMethod(newState);
 
   return newState;
 };

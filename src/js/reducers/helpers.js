@@ -1,3 +1,22 @@
+// base
+import ops from "immutable-ops";
+
+const { splice } = ops;
+
+// return new state object with new val for key for current step
+const replace = (state = {}, key = "", val = "") => {
+  const
+    query = state.queries[state.currentQuery],
+    step = query.steps[query.currentStep],
+    newStep = { ...step };
+
+  newStep[key] = val;
+
+  // update query steps
+  query.steps = splice(query.currentStep, 1, newStep, query.steps);
+  return { ...state };
+};
+
 // creates a new or copies a given step object
 const createStepObject = (step = {}) => ({
   method: step.method || "POST",
@@ -20,6 +39,7 @@ const createStateObject = () => ({
 });
 
 // exports
+exports.replace = replace;
 exports.createStepObject = createStepObject;
 exports.createQueryObject = createQueryObject;
 exports.createStateObject = createStateObject;

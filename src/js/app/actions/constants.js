@@ -1,5 +1,4 @@
 export const ADD_STEP = "ADD_STEP";
 export const ADD_QUERY = "ADD_QUERY";
-export const SET_STEP_URL = "SET_STEP_URL";
-export const SET_QUERY_RESPONSE = "SET_QUERY_RESPONSE";
-export const TOGGLE_QUERY_METHOD = "TOGGLE_QUERY_METHOD";
+export const SET_STEP_VALUE = "SET_STEP_VALUE";
+export const TOGGLE_STEP_METHOD = "TOGGLE_STEP_METHOD";
