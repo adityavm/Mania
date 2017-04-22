@@ -4,9 +4,12 @@ import { connect } from "react-redux";
 
 // app
 import setStepUrl from "../actions/setStepUrl";
+import MethodButton from "./methodButton";
 
 // style
 import "scss/containers/query";
+
+// internal
 
 const mapStateToProps = (state = {}) => {
   const
@@ -22,8 +25,11 @@ const mapDispatchToProps = dispatch => ({
   setUrl: event => dispatch(setStepUrl(event.target.value)),
 });
 
+// render
+
 const StepUrl = ({ url, setUrl }) => (
   <div id="query">
+    <MethodButton />
     <input type="text" placeholder="Enter API URL" value={url} onChange={setUrl} />
   </div>
 );

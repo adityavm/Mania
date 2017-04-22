@@ -40,7 +40,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const QueryButton = ({ url, payload, executeQuery }) => (
-  <Button type="default" onClick={() => executeQuery(url, payload)} label="Play" />
+  <Button type="default" color="green" onClick={() => executeQuery(url, payload)} label="Play" />
 );
 
 export default connect(

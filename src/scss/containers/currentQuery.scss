@@ -10,15 +10,12 @@
   .label {
     padding: 5px;
     border-radius: 3px;
-    background-color: rgba(0, 0, 0, 0.25);
     color: $text-light;
     font-size: 11px;
 
     &.method {
-      &.POST {
-        background-color: $orange;
-        color: $text-dark;
-      }
+      &.POST { color: $orange; }
+      &.GET { color: $green; }
     }
   }
 
@@ -31,6 +28,11 @@
     white-space: nowrap;
 
     .hellip { display: none; }
+
+    &.empty {
+      font-style: italic;
+      opacity: 0.75;
+    }
   }
 
   .step.show-hellip .value .hellip { display: inline-block; }
