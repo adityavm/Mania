@@ -3,8 +3,8 @@ import React from "react";
 import { connect } from "react-redux";
 
 // app
-import toggleStepMethod from "../actions/toggleStepMethod";
-import Button from "../components/button";
+import toggleStepMethod from "../../actions/toggleStepMethod";
+import Button from "../../components/button";
 
 // styles
 import "scss/components/button";

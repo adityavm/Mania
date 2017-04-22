@@ -1,11 +1,11 @@
 // main
 import React from "react";
 import { connect } from "react-redux";
-import _ from "../../utils";
+import _ from "../../../utils";
 
 // app
-import setCurrentStepValue from "../actions/setCurrentStepValue";
-import Button from "../components/button";
+import setCurrentStepValue from "../../actions/setCurrentStepValue";
+import Button from "../../components/button";
 
 // style
 import "scss/components/button";
@@ -31,9 +31,13 @@ const mapStateToProps = (state = {}) => {
 
 const mapDispatchToProps = dispatch => ({
   executeQuery: (url, payload) => {
+    dispatch(setCurrentStepValue("fetching", true));
     executeQuery(url, payload)
     .then(
-      d => dispatch(setCurrentStepValue("response", JSON.stringify(d))),
+      d => {
+        dispatch(setCurrentStepValue("fetching", false));
+        dispatch(setCurrentStepValue("response", JSON.stringify(d)));
+      },
     );
   },
 });

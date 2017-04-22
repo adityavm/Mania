@@ -1,15 +1,17 @@
+@import "../core/vars";
+
 #payload {
   display: flex;
-  flex: 1;
+  flex: 0.75;
   max-width: 50%;
 
   textarea {
-    background-color: #111;
+    background-color: $black;
     width: 100%;
-    color: #eee;
+    color: $text-light;
     border: none;
     padding: 10px;
-    font: 14px "Roboto Mono";
+    font: 11px "Roboto Mono";
 
     &:focus {
       outline: none;

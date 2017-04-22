@@ -24,6 +24,7 @@ const createStepObject = (step = {}) => ({
   payload: step.payload || "",
   response: step.response || "",
   modifier: step.modifier || "",
+  fetching: step.fetching || false,
 });
 
 // creates a new query object

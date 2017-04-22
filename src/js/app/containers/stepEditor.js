@@ -2,8 +2,7 @@
 import React from "react";
 
 // app
-import QueryButton from "./queryButton";
-import Query from "./query";
+import Query from "./query/input";
 import Payload from "./payload";
 import Repl from "./repl";
 
@@ -14,7 +13,6 @@ const Step = () => (
   <div id="step-editor">
     <div className="top">
       <Query></Query>
-      <QueryButton />
     </div>
     <div className="bottom">
       <Payload></Payload>

@@ -1,6 +1,7 @@
 @import "../core/vars";
 
 #sidebar {
+  -webkit-app-region: drag;
   background-color: $black;
-  padding: 10px;
+  padding: 40px 10px 10px;
 }

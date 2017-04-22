@@ -12,6 +12,7 @@
     border-radius: 3px;
     color: $text-light;
     font-size: 11px;
+    width: 35px;
 
     &.method {
       &.POST { color: $orange; }
@@ -26,6 +27,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    -webkit-font-smoothing: antialiased;
 
     .hellip { display: none; }
 

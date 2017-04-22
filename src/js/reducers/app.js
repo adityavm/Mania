@@ -5,7 +5,7 @@ import { combineReducers } from "redux";
 import {  ADD_STEP,
           ADD_QUERY,
           SET_STEP_VALUE,
-          TOGGLE_STEP_METHOD   } from "../app/actions/constants";
+          TOGGLE_STEP_METHOD   } from "../app/constants";
 import {  replaceInCurrentStep,
           createStepObject,
           createQueryObject,

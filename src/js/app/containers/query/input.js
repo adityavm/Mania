@@ -3,8 +3,9 @@ import React from "react";
 import { connect } from "react-redux";
 
 // app
-import setCurrentStepValue from "../actions/setCurrentStepValue";
+import setCurrentStepValue from "../../actions/setCurrentStepValue";
 import MethodButton from "./methodButton";
+import QueryButton from "./executeButton";
 
 // style
 import "scss/containers/query";
@@ -31,6 +32,7 @@ const StepUrl = ({ url, setUrl }) => (
   <div id="query">
     <MethodButton />
     <input type="text" placeholder="Enter API URL" value={url} onChange={setUrl} />
+    <QueryButton />
   </div>
 );
 
