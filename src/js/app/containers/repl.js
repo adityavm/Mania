@@ -1,6 +1,7 @@
 // main
 import React from "react";
 import { connect } from "react-redux";
+import classnames from "classnames";
 
 // app
 import { THEME } from "../constants";
@@ -20,9 +21,9 @@ const mapStateToProps = (state = {}) => {
     modified = false,
     error;
 
-  if (step.modifiedResponse !== "") {
+  if (step.evaluation.response) {
     try {
-      response = step.modifiedResponse;
+      response = step.evaluation.response;
       modified = true;
     } catch (e) {
       error = e.toString();
@@ -41,16 +42,38 @@ const mapStateToProps = (state = {}) => {
     error,
     fetching: step.fetching,
     response,
+    assertions: step.evaluation.assertions,
     modified,
   };
 };
 
-const Repl = ({ response, error, modified, fetching }) => (
+// get current step status
+const currentStatus = (response, error, modified, fetching) => {
+  let
+    label = null,
+    classes = null;
+
+  if (modified) label = "Response is modified";
+  if (error) label = error;
+  if (fetching) label = "Fetching API ...";
+  if (!fetching && !response) label = "Click Play to execute";
+
+  classes = classnames("status", { modified, error, fetching, empty: !fetching && !response });
+
+  return label && classes && <span className={classes}>{label}</span>;
+};
+
+// render
+const Repl = ({ response, assertions, error, modified, fetching }) => (
   <div id="repl">
-    {modified && <span className="status modified">Response is modified</span>}
-    {error && <span className="status error">{error}</span>}
-    {fetching && <span className="status fetching">... Fetching Query</span>}
-    {!fetching && !response && <span className="empty">Nothing yet</span>}
+    {currentStatus(response, error, modified, fetching)}
+
+    {response && assertions.map((assert, idx) => {
+      return <span key={idx} className={classnames("status", "assertion", String(assert[1]))}>
+        {assert[0]}
+      </span>;
+    })}
+
     {!fetching && response && <JSONTree data={response} theme={THEME} />}
   </div>
 );

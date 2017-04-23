@@ -23,7 +23,10 @@ const createStepObject = (step = {}) => ({
   url: step.url || "",
   payload: step.payload || "",
   response: step.response || "",
-  modifiedResponse: step.modifiedResponse || "",
+  evaluation: {
+    assertions: (step.evaluation || {}).assertions || [],
+    response: (step.evaluation || {}).response || "",
+  },
   modifier: step.modifier || "",
   fetching: step.fetching || false,
 });

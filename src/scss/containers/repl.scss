@@ -9,21 +9,28 @@
   font: 11px / 1.4em Hack, Inconsolata, Consolas, Monaco, monospace;
   padding: 5px;
 
-  .empty {
-    font-style: italic;
-    color: $text-mid;
-  }
-
   .status {
     display: block;
     padding: 5px;
     color: $text-dark;
+
+    &.empty {
+      font-style: italic;
+      color: $text-mid;
+    }
 
     &.fetching { background-color: $yellow; }
 
     &.modified { background-color: $blue; }
 
     &.error { background-color: $red; }
+
+    &.assertion {
+      color: $text-light;
+
+      &.true { background-color: $green; }
+      &.false { background-color: $red; }
+    }
   }
 
   > ul {

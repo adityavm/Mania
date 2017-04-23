@@ -45,7 +45,11 @@ const toggleStepMethod = state => {
   return replaceInCurrentStep(state, "method", newMethod);
 };
 
-const updateResponse = (state = {}) => replaceInCurrentStep(state, "modifiedResponse", evaluateStepRunner(state));
+const updateResponse = (state = {}) => {
+  const evaluation = evaluateStepRunner(state);
+  if (!evaluation) return state;
+  else return replaceInCurrentStep(state, "evaluation", evaluation);
+};
 
 // state
 

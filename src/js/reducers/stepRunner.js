@@ -1,8 +1,23 @@
+// simple assertion
+const assert = (description, check) => [description, check];
+
 // FIXME may not be totally safe
 const sandbox = (fn = "", response) => {
-  return (function(window, document, response) {
+  let assertions = [];
+
+  const addAssertion = (description, check) => {
+    assertions.push(assert(description, check));
+    return undefined;
+  };
+
+  const newResponse = (function(window, document, assert, response) {
     return eval(fn);
-  })({}, {}, JSON.parse(response));
+  })({}, {}, addAssertion, JSON.parse(response));
+
+  return {
+    response: newResponse,
+    assertions,
+  };
 };
 
 const evaluateStepRunner = (oldState = {}) => {
@@ -13,6 +28,9 @@ const evaluateStepRunner = (oldState = {}) => {
   const
     runner = step.modifier,
     response = step.response;
+
+  // need response
+  if (!response) return false;
 
   let modifiedResponse = sandbox(runner, response);
 
