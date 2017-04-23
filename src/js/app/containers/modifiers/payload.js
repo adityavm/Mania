@@ -5,8 +5,6 @@ import { connect } from "react-redux";
 // app
 import setCurrentStepValue from "../../actions/setCurrentStepValue";
 
-// style
-import "scss/containers/payload";
 
 const mapStateToProps = (state = {}) => {
   const

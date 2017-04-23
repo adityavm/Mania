@@ -14,8 +14,16 @@
     color: $text-mid;
   }
 
-  .fetching {
-    color: $yellow;
+  .status {
+    display: block;
+    padding: 5px;
+    color: $text-dark;
+
+    &.fetching { background-color: $yellow; }
+
+    &.modified { background-color: $blue; }
+
+    &.error { background-color: $red; }
   }
 
   > ul {

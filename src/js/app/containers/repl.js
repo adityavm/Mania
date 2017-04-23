@@ -15,17 +15,41 @@ const mapStateToProps = (state = {}) => {
     query = state.queries[state.currentQuery],
     step = query.steps[query.currentStep];
 
-  let response = step.response ? JSON.parse(step.response) : null;
+  let
+    response,
+    modified = false,
+    error;
+
+  if (step.modifiedResponse !== "") {
+    try {
+      response = step.modifiedResponse;
+      modified = true;
+    } catch (e) {
+      error = e.toString();
+      response = null;
+    }
+  } else {
+    try {
+      response = step.response ? JSON.parse(step.response) : null;
+    } catch (e) {
+      error = e.toString();
+      response = null;
+    }
+  }
 
   return {
+    error,
     fetching: step.fetching,
     response,
+    modified,
   };
 };
 
-const Repl = ({ response, fetching }) => (
+const Repl = ({ response, error, modified, fetching }) => (
   <div id="repl">
-    {fetching && <span className="fetching">... Fetching Query</span>}
+    {modified && <span className="status modified">Response is modified</span>}
+    {error && <span className="status error">{error}</span>}
+    {fetching && <span className="status fetching">... Fetching Query</span>}
     {!fetching && !response && <span className="empty">Nothing yet</span>}
     {!fetching && response && <JSONTree data={response} theme={THEME} />}
   </div>

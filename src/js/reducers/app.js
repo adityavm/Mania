@@ -1,15 +1,18 @@
 // base
 import { combineReducers } from "redux";
+import q from "q";
 
 // app
 import {  ADD_STEP,
           ADD_QUERY,
           SET_STEP_VALUE,
-          TOGGLE_STEP_METHOD   } from "../app/constants";
+          TOGGLE_STEP_METHOD,
+          EVALUATE_STEP_RUNNER   } from "../app/constants";
 import {  replaceInCurrentStep,
           createStepObject,
           createQueryObject,
           createStateObject   } from "./helpers";
+import evaluateStepRunner from "./stepRunner";
 
 // modifiers
 
@@ -42,15 +45,18 @@ const toggleStepMethod = state => {
   return replaceInCurrentStep(state, "method", newMethod);
 };
 
+const updateResponse = (state = {}) => replaceInCurrentStep(state, "modifiedResponse", evaluateStepRunner(state));
+
 // state
 
 const AppState = (state, action) => {
   let newState = state || createStateObject();
 
-  if (action.type === ADD_STEP)     return addStep(newState);
-  if (action.type === ADD_QUERY)    return addQuery(newState);
-  if (action.type === SET_STEP_VALUE) return setCurrentStepValue(newState, action.key, action.value);
-  if (action.type === TOGGLE_STEP_METHOD) return toggleStepMethod(newState);
+  if (action.type === ADD_STEP)                 return addStep(newState);
+  if (action.type === ADD_QUERY)                return addQuery(newState);
+  if (action.type === SET_STEP_VALUE)           return setCurrentStepValue(newState, action.key, action.value);
+  if (action.type === TOGGLE_STEP_METHOD)       return toggleStepMethod(newState);
+  if (action.type === EVALUATE_STEP_RUNNER)     return updateResponse(newState);
 
   return newState;
 };
