@@ -1,20 +1,16 @@
 @import "../core/vars";
 
-#payload {
-  display: flex;
-  flex: 0.75;
-  max-width: 50%;
+textarea#payload,
+textarea#runner {
+  flex: 1;
+  background-color: $black;
+  width: 100%;
+  color: $text-light;
+  border: none;
+  padding: 10px;
+  font: 11px "Roboto Mono";
 
-  textarea {
-    background-color: $black;
-    width: 100%;
-    color: $text-light;
-    border: none;
-    padding: 10px;
-    font: 11px "Roboto Mono";
-
-    &:focus {
-      outline: none;
-    }
+  &:focus {
+    outline: none;
   }
 }

@@ -1,9 +1,9 @@
-// main
+// base
 import React from "react";
 
 // app
 import Query from "./query/input";
-import Payload from "./payload";
+import Modifiers from "./modifiers/modifiers";
 import Repl from "./repl";
 
 // styles
@@ -12,11 +12,11 @@ import "scss/containers/step";
 const Step = () => (
   <div id="step-editor">
     <div className="top">
-      <Query></Query>
+      <Query />
     </div>
     <div className="bottom">
-      <Payload></Payload>
-      <Repl></Repl>
+      <Modifiers />
+      <Repl />
     </div>
   </div>
 );
