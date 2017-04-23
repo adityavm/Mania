@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import classnames from "classnames";
 
 // app
+import { getCurrents } from "../../globals";
 import { THEME } from "../constants";
 import JSONTree from "react-json-tree";
 
@@ -12,9 +13,7 @@ import "scss/containers/repl";
 
 
 const mapStateToProps = (state = {}) => {
-  const
-    query = state.queries[state.currentQuery],
-    step = query.steps[query.currentStep];
+  const { step } = getCurrents(state, false);
 
   let
     response,

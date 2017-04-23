@@ -5,11 +5,16 @@ const assert = (description, check) => [description, check];
 const sandbox = (fn = "", response) => {
   let assertions = [];
 
+  // collect all assertions
   const addAssertion = (description, check) => {
+    if (typeof description !== "string") {
+      [check, description] = [description, `unlabeled assertion ${assertions.length + 1}`];
+    }
     assertions.push(assert(description, check));
     return undefined;
   };
 
+  // get modified response
   const newResponse = (function(window, document, assert, response) {
     return eval(fn);
   })({}, {}, addAssertion, JSON.parse(response));
@@ -20,14 +25,13 @@ const sandbox = (fn = "", response) => {
   };
 };
 
-const evaluateStepRunner = (oldState = {}) => {
-  const
-    query = oldState.queries[oldState.currentQuery],
-    step = query.steps[query.currentStep];
+//
 
+const evaluateStepRunner = (state = {}, query, step) => {
   const
-    runner = step.modifier,
-    response = step.response;
+    givenStep = state.queries[query].steps[step],
+    runner = givenStep.modifier,
+    response = givenStep.response;
 
   // need response
   if (!response) return false;

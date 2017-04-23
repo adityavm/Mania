@@ -3,6 +3,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 // app
+import { getCurrents } from "../../../globals";
 import toggleStepMethod from "../../actions/toggleStepMethod";
 import Button from "../../components/button";
 
@@ -11,15 +12,9 @@ import "scss/components/button";
 
 // internal
 
-const mapStateToProps = (state = {}) => {
-  const
-    query = state.queries[state.currentQuery],
-    step = query.steps[query.currentStep];
-
-  return {
-    method: step.method,
-  };
-};
+const mapStateToProps = (state = {}) => ({
+  method: getCurrents(state, false).step.method,
+});
 
 const mapDispatchToProps = dispatch => ({
   toggleStepMethod: () => dispatch(toggleStepMethod()),

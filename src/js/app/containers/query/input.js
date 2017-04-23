@@ -3,6 +3,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 // app
+import { getCurrents } from "../../../globals";
 import setCurrentStepValue from "../../actions/setCurrentStepValue";
 import MethodButton from "./methodButton";
 import QueryButton from "./executeButton";
@@ -12,15 +13,9 @@ import "scss/containers/query";
 
 // internal
 
-const mapStateToProps = (state = {}) => {
-  const
-    query = state.queries[state.currentQuery],
-    step = query.steps[query.currentStep];
-
-  return {
-    url: step.url,
-  };
-};
+const mapStateToProps = (state = {}) => ({
+  url: getCurrents(state, false).step.url,
+});
 
 const mapDispatchToProps = dispatch => ({
   setUrl: event => dispatch(setCurrentStepValue("url", event.target.value)),

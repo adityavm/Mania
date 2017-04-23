@@ -21,9 +21,15 @@
 
     &.fetching { background-color: $yellow; }
 
-    &.modified { background-color: $blue; }
+    &.modified {
+      background-color: $blue;
+      color: $text-light;
+    }
 
-    &.error { background-color: $red; }
+    &.error {
+      background-color: $red;
+      color: $text-light;
+    }
 
     &.assertion {
       color: $text-light;

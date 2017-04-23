@@ -3,6 +3,7 @@ export const ADD_QUERY = "ADD_QUERY";
 export const SET_STEP_VALUE = "SET_STEP_VALUE";
 export const TOGGLE_STEP_METHOD = "TOGGLE_STEP_METHOD";
 export const EVALUATE_STEP_RUNNER = "EVALUATE_STEP_RUNNER";
+export const EXECUTE_QUERY = "EXECUTE_QUERY";
 export const THEME = {
   scheme: "default",
   author: "chris kempson (http://chriskempson.com)",

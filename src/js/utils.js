@@ -32,6 +32,22 @@ const utils = {
     request.send(type === "POST" ? payload : null);
     return then.promise;
   },
-}
+
+  queryParams: function(json) {
+    let queryParams = [];
+
+    // convert json into query params
+    Object.keys(json).forEach(key => queryParams.push([key, json[key]]));
+    return queryParams.map(segment => {
+      let output;
+      if (Array.isArray(segment[1])) { // [ key, [val1, val2, val3] ]
+        output = segment[1].map(val => String(segment[0] + "[]=" + val)).join("&");
+      } else {
+        output = segment.join("=");
+      }
+      return output;
+    }).join("&");
+  },
+};
 
 module.exports = utils;

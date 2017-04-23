@@ -1,14 +1,17 @@
 // base
 import ops from "immutable-ops";
+import q from "q";
+import _ from "../utils";
+
+// app
+import { getCurrents } from "../globals";
 
 const { splice } = ops;
 
 // return new state object with new val for key for current step
 const replaceInCurrentStep = (state = {}, key = "", val = "") => {
-  const
-    query = state.queries[state.currentQuery],
-    step = query.steps[query.currentStep],
-    newStep = { ...step };
+  const query = state.queries[state.currentQuery];
+  const newStep = { ...getCurrents(state, false).step };
 
   newStep[key] = val;
 
@@ -43,8 +46,25 @@ const createStateObject = () => ({
   currentQuery: 0,
 });
 
+// make xhr call for given step
+const executeStep = (state = {}, query, step) => {
+  const
+    givenStep = state.queries[query].steps[step],
+    isGET = givenStep.method === "GET",
+    defer = q.defer();
+
+  let
+    payload = isGET ? _.queryParams(JSON.parse(givenStep.payload)) : givenStep.payload,
+    url = isGET ? `${givenStep.url}?${payload}` : givenStep.url;
+
+  _.xhr(url, (isGET ? null : payload)).then(data => defer.resolve(data), data => defer.reject(data));
+
+  return defer.promise;
+};
+
 // exports
 exports.replaceInCurrentStep = replaceInCurrentStep;
 exports.createStepObject = createStepObject;
 exports.createQueryObject = createQueryObject;
 exports.createStateObject = createStateObject;
+exports.executeStep = executeStep;
