@@ -36,6 +36,8 @@
 
       &.true { background-color: $green; }
       &.false { background-color: $red; }
+
+      .result { color: rgba(0, 0, 0, 0.25); }
     }
   }
 

@@ -70,6 +70,7 @@ const Repl = ({ response, assertions, error, modified, fetching }) => (
     {response && assertions.map((assert, idx) => {
       return <span key={idx} className={classnames("status", "assertion", String(assert[1]))}>
         {assert[0]}
+        <span className="result">&nbsp;{assert[1] ? "succeeded" : "failed"}</span>
       </span>;
     })}
 

@@ -7,6 +7,7 @@ import { getCurrents } from "../../../globals";
 import setCurrentStepValue from "../../actions/setCurrentStepValue";
 import evaluateStepRunner from "../../actions/evaluateStepRunner";
 import Button from "../../components/button";
+import Editor from "../../components/editor";
 
 
 const mapStateToProps = (state = {}) => ({
@@ -16,13 +17,13 @@ const mapStateToProps = (state = {}) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setModifier: event => dispatch(setCurrentStepValue("modifier", event.target.value)),
+  setModifier: value => dispatch(setCurrentStepValue("modifier", value)),
   evaluateRunner: (query, step) => dispatch(evaluateStepRunner(query, step)),
 });
 
 const Runner = ({ currentQuery, currentStep, currentModifier, setModifier, evaluateRunner }) => (
   <div id="runner">
-    <textarea placeholder="(function(){ ... })()" value={currentModifier} onChange={event => setModifier(event)}></textarea>
+    <Editor id="runner-editor" language="javascript" onChange={setModifier} />
     <Button type="default" color="green" onClick={() => evaluateRunner(currentQuery, currentStep)} label="Update" />
   </div>
 );

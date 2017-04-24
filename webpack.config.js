@@ -1,6 +1,7 @@
 const
   path = require("path"),
-  ExtractTextPlugin = require("extract-text-webpack-plugin")
+  ExtractTextPlugin = require("extract-text-webpack-plugin"),
+  CopyWebpackPlugin = require("copy-webpack-plugin"),
   webpack = require("webpack");
 
 const
@@ -25,6 +26,9 @@ var cfg = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new ExtractTextPlugin("[name].css"),
+    new CopyWebpackPlugin([
+      { from: srcDir + "/js/ext", to: appDir + "/js" },
+    ]),
   ],
   module: {
     loaders: [{
