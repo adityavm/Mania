@@ -16,7 +16,7 @@ const sandbox = (fn = "", response) => {
 
   // get modified response
   const newResponse = (function(window, document, assert, response) {
-    return eval(fn);
+    return eval(`(function(){${fn}})(response)`);
   })({}, {}, addAssertion, JSON.parse(response));
 
   return {

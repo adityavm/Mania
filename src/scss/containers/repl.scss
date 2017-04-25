@@ -1,13 +1,19 @@
 @import "../core/vars";
 
 #repl {
-  flex: 1.25;
+  flex: 0.75;
   border-width: 1px 0 0;
   border-style: solid;
   border-color: $stroke-light-grey;
   overflow: auto;
   font: 11px / 1.4em Hack, Inconsolata, Consolas, Monaco, monospace;
   padding: 5px;
+  display: flex;
+  flex-direction: column;
+
+  .response-meta {
+    flex: none;
+  }
 
   .status {
     display: block;
@@ -42,6 +48,8 @@
   }
 
   > ul {
+    flex: 1;
     margin: 0 5px !important;
+    overflow-y: auto;
   }
 }

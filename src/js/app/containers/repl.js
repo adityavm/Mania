@@ -65,14 +65,16 @@ const currentStatus = (response, error, modified, fetching) => {
 // render
 const Repl = ({ response, assertions, error, modified, fetching }) => (
   <div id="repl">
-    {currentStatus(response, error, modified, fetching)}
+    <div className="response-meta">
+      {currentStatus(response, error, modified, fetching)}
 
-    {response && assertions.map((assert, idx) => {
-      return <span key={idx} className={classnames("status", "assertion", String(assert[1]))}>
-        {assert[0]}
-        <span className="result">&nbsp;{assert[1] ? "succeeded" : "failed"}</span>
-      </span>;
-    })}
+      {response && assertions.map((assert, idx) => {
+        return <span key={idx} className={classnames("status", "assertion", String(assert[1]))}>
+          {assert[0]}
+          <span className="result">&nbsp;{assert[1] ? "succeeded" : "failed"}</span>
+        </span>;
+      })}
+    </div>
 
     {!fetching && response && <JSONTree data={response} theme={THEME} />}
   </div>

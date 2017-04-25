@@ -1,7 +1,7 @@
 import q from "q";
 
 const utils = {
-  xhr: function(url, payload) {
+  xhr: function(url, payload, headers = []) {
     let
       data = null,
       lastResponse = null,
@@ -11,6 +11,7 @@ const utils = {
     let type = payload ? "POST" : "GET";
 
     request.open(type, url);
+    headers.forEach(header => request.setRequestHeader(header[0], header[1]));
     request.responseType = "json";
     request.onload = function() {
       lastResponse = request.response;
