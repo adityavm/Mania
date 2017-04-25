@@ -3,20 +3,29 @@
 #query-modifiers {
   display: flex;
   flex-direction: column;
-  flex: 1.25;
+  flex: 1;
+  max-width: 50%;
 
   #payload,
   #runner {
     display: flex;
-    flex: 1;
+    flex-direction: column;
     background-color: $black;
     position: relative;
+
+    .title {
+      color: fade-out(#fff, 0.5);
+      text-align: right;
+      padding: 5px;
+      font-size: 12px;
+    }
 
     &-editor {
       flex: 1;
     }
 
     .status {
+      display: none;
       position: absolute;
       left: 5px;
       bottom: 5px;
@@ -32,10 +41,28 @@
     }
 
     button {
+      display: none;
       position: absolute;
       bottom: 10px;
       right: 10px;
       z-index: 1;
+    }
+
+    &.expanded {
+      flex: 1;
+
+      button,
+      .status {
+        display: unset;
+      }
+    }
+
+    &:not(.expanded) .title {
+      cursor: pointer;
+      color: fade-out(#fff, 0.75);
+      background-color: #111;
+      font-style: italic;
+      &:hover { color: fade-out(#fff, 0.5); }
     }
   }
 

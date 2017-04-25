@@ -4,6 +4,7 @@ import q from "q";
 
 // app
 import {  ADD_STEP,
+          ACTIVATE_STEP,
           ADD_QUERY,
           SET_STEP_VALUE,
           TOGGLE_STEP_METHOD,
@@ -31,6 +32,15 @@ const addStep = oldState => {
   query.currentStep += 1;
   return state;
 };
+
+const activateStep = (oldState, step) => {
+  const
+    state = { ...oldState },
+    query = state.queries[getCurrents(state).query];
+
+  query.currentStep = step;
+  return state;
+}
 
 const addQuery = oldState => {
   const state = { ...oldState };
@@ -81,6 +91,7 @@ const AppState = (state, action) => {
   let newState = state || createStateObject();
 
   if (action.type === ADD_STEP)                 return addStep(newState);
+  if (action.type === ACTIVATE_STEP)            return activateStep(newState, action.step);
   if (action.type === ADD_QUERY)                return addQuery(newState);
   if (action.type === SET_STEP_VALUE)           return setCurrentStepValue(newState, action.key, action.value);
   if (action.type === TOGGLE_STEP_METHOD)       return toggleStepMethod(newState);

@@ -8,9 +8,9 @@ const constructClasses = step => {
   return classNames.join(" ");
 };
 
-const QueryStep = ({ step }) => {
+const QueryStep = ({ step, isActive, onClick }) => {
   return (
-    <div className={constructClasses(step)}>
+    <div className={classnames({ active: isActive }, constructClasses(step))} onClick={onClick}>
       <span className={classnames("label", "method", step.method)}>{step.method}</span>
       <span className={classnames("value", "url", { empty: !step.url })}>
         <span className="hellip" dangerouslySetInnerHTML={{__html: "&hellip;"}}></span>

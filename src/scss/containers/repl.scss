@@ -1,7 +1,8 @@
 @import "../core/vars";
 
 #repl {
-  flex: 0.75;
+  flex: 1;
+  max-width: 50%;
   border-width: 1px 0 0;
   border-style: solid;
   border-color: $stroke-light-grey;

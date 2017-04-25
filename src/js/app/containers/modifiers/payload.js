@@ -28,9 +28,10 @@ const mapDispatchToProps = dispatch => ({
   setPayload: value => dispatch(setCurrentStepValue("payload", value)),
 });
 
-const Payload = ({ payload, error, setPayload }) => (
-  <div id="payload">
-    <Editor id="payload-editor" language="javascript" onChange={setPayload} />
+const Payload = ({ payload, error, setPayload, onClick }) => (
+  <div id="payload" className="expanded">
+    <div className="title" onClick={() => onClick("payload")}>Request Payload</div>
+    <Editor id="payload-editor" language="javascript" onChange={setPayload} value={payload} />
     {error && <span className="status error">{error}</span>}
   </div>
 );
