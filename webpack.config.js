@@ -6,7 +6,7 @@ const
 
 const
   srcDir = path.join(__dirname, "src"),
-  appDir = path.join(__dirname, "dist");
+  appDir = path.join(__dirname, "build");
 
 var cfg = {
   devServer: {
@@ -28,6 +28,10 @@ var cfg = {
     new ExtractTextPlugin("[name].css"),
     new CopyWebpackPlugin([
       { from: srcDir + "/js/ext", to: appDir + "/js" },
+      { from: srcDir + "/index.html", to: appDir + "/index.html" },
+      { from: srcDir + "/assets/", to: appDir + "/" },
+      { from: __dirname + "/app.js", to: appDir + "/app.js" },
+      { from: __dirname + "/package.json", to: appDir + "/package.json" },
     ]),
   ],
   module: {
@@ -43,6 +47,10 @@ var cfg = {
   resolve: {
     extensions: ["", ".js", ".scss", ".sass"],
     root: [srcDir],
+  },
+  node: {
+    __dirname: false,
+    __filename: false,
   },
 };
 

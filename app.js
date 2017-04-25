@@ -1,8 +1,7 @@
 const
   electron = require("electron");
   app = electron.app;
-  BrowserWindow = electron.BrowserWindow;
-
+  BrowserWindow = electron.BrowserWindow,
   path = require("path");
   url = require("url");
 
@@ -13,7 +12,7 @@ function createWindow () {
   mainWindow = new BrowserWindow({width: 1024, height: 768, titleBarStyle: "hidden-inset"});
 
   mainWindow.loadURL(url.format({
-    pathname: path.join(__dirname, "dist/index.html"),
+    pathname: path.join(__dirname, "index.html"),
     protocol: "file:",
     slashes: true,
   }));
