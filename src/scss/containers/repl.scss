@@ -48,9 +48,49 @@
     }
   }
 
+  .curl-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 -5px -5px;
+    width: unquote("calc(100% + 10px)");
+    max-height: 25px;
+    transition: max-height 0.2s linear;
+
+    .title {
+      flex: none;
+      background-color: lighten($orange, 10%);
+      color: $text-light;
+      font-style: italic;
+      cursor: pointer;
+      padding: 5px;
+    }
+
+    textarea {
+      border: 0;
+      flex: 1;
+      line-height: 1.5em;
+      font-family: $font-mono;
+      padding: 10px;
+      color: $base03;
+      background-color: $base06;
+      outline: 0;
+    }
+
+    &.active {
+      height: 150px;
+      max-height: 150px;
+
+      .title {
+        font-style: normal;
+        background-color: $orange;
+      }
+    }
+  }
+
   > ul {
     flex: 1;
     margin: 0 5px !important;
     overflow-y: auto;
+    padding-bottom: 10px !important;
   }
 }

@@ -1,16 +1,43 @@
-// main
+// base
 import React from "react";
 import { connect } from "react-redux";
 import classnames from "classnames";
+import _ from "../../utils";
 
 // app
 import { getCurrents } from "../../globals";
 import { THEME } from "../constants";
 import JSONTree from "react-json-tree";
+import Editor from "../components/editor";
 
 // styles
 import "scss/containers/repl";
 
+
+const toggleCURL = () => {
+  const
+    curl = document.querySelector("#repl .curl-container"),
+    className = "active",
+    method = curl.classList.contains(className) ? "remove" : "add";
+
+  curl.classList[method](className);
+};
+
+const constructCURL = (method, url, payload) => {
+  method = method.toUpperCase();
+  payload = method === "GET" ? _.queryParams(payload) : payload;
+
+  if (method === "GET") url += `?${payload}`;
+
+  let curl = `curl -X ${method} ${url} -H 'cache-control: no-cache' -H 'content-type: application/json'`;
+
+  if (method === "POST" && payload) {
+    payload = payload.replace(/\s{2,}|\n/g, " ");
+    curl += ` -d '${payload}'`;
+  }
+
+  return curl;
+};
 
 const mapStateToProps = (state = {}) => {
   const { step } = getCurrents(state, false);
@@ -38,9 +65,12 @@ const mapStateToProps = (state = {}) => {
   }
 
   return {
+    method: step.method,
+    url: step.url,
+    payload: step.payload,
     error,
-    fetching: step.fetching,
     response,
+    fetching: step.fetching,
     assertions: step.evaluation.assertions,
     modified,
   };
@@ -63,7 +93,7 @@ const currentStatus = (response, error, modified, fetching) => {
 };
 
 // render
-const Repl = ({ response, assertions, error, modified, fetching }) => (
+const Repl = ({ method, url, payload, response, assertions, error, modified, fetching }) => (
   <div id="repl">
     <div className="response-meta">
       {currentStatus(response, error, modified, fetching)}
@@ -77,6 +107,13 @@ const Repl = ({ response, assertions, error, modified, fetching }) => (
     </div>
 
     {!fetching && response && <JSONTree data={response} theme={THEME} />}
+
+    {!fetching && response && !error && (
+      <div className="curl-container">
+        <div className="title" onClick={toggleCURL}>cURL Code</div>
+        <textarea value={constructCURL(method, url, payload)} readOnly />
+      </div>
+    )}
   </div>
 );
 
