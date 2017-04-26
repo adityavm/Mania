@@ -6,7 +6,7 @@
   border-width: 1px 0 0;
   border-style: solid;
   border-color: $stroke-light-grey;
-  overflow: auto;
+  overflow: hidden;
   font: 11px / 1.4em Hack, Inconsolata, Consolas, Monaco, monospace;
   padding: 5px;
   display: flex;
@@ -20,9 +20,10 @@
     display: block;
     padding: 5px;
     color: $text-dark;
+    font-family: $font-sans;
 
     &.empty {
-      font-style: italic;
+      font-weight: 500;
       color: $text-mid;
     }
 
@@ -40,6 +41,7 @@
 
     &.assertion {
       color: $text-light;
+      font-family: $font-mono;
 
       &.true { background-color: $green; }
       &.false { background-color: $red; }
@@ -51,18 +53,22 @@
   .curl-container {
     display: flex;
     flex-direction: column;
+    flex: none;
     margin: 0 0 -5px -5px;
     width: unquote("calc(100% + 10px)");
-    max-height: 25px;
-    transition: max-height 0.2s linear;
+    max-height: 40px;
+    transition: max-height 0.2s ease-out;
 
     .title {
+      display: flex;
+      align-items: center;
       flex: none;
       background-color: lighten($orange, 10%);
-      color: $text-light;
-      font-style: italic;
+      color: $text-dark;
       cursor: pointer;
-      padding: 5px;
+      padding: 0 10px;
+      font-size: 14px;
+      height: 40px;
     }
 
     textarea {

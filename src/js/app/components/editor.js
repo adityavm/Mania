@@ -17,6 +17,9 @@ class Editor extends React.Component {
     var flask = this.state.flask;
     flask.run(`#${this.props.id}`, { language: this.props.language });
     flask.onUpdate(code => this.props.onChange(code));
+
+    // initialise
+    if (this.props.value !== "") flask.update(this.props.value);
   }
 
   componentWillUpdate(nextProps) {

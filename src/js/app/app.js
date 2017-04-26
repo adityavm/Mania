@@ -14,6 +14,7 @@ import "scss/containers/sidebar";
 const App = () => (
   <div id="main">
     <div id="sidebar">
+      <div className="title"></div>
       <CurrentQuery />
       <SavedQueries />
     </div>

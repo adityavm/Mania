@@ -11,7 +11,24 @@ import App from "js/app/app";
 // styles
 import "scss/style";
 
-let store = createStore(AppState);
+const getState = localStorage.getItem("state");
+const store = createStore(AppState, getState ? JSON.parse(getState) : null);
+
+(() => {
+  let timeout = null;
+  store.subscribe(() => {
+    const state = store.getState();
+    if (timeout) {
+      clearTimeout(timeout);
+      timeout = null;
+    };
+    timeout = setTimeout(() => {
+      localStorage.setItem("state", JSON.stringify(state));
+      timeout = null;
+      console.log("Saved @ ", new Date());
+    }, 5000);
+  });
+})(store);
 
 render(
   <Provider store={store}>

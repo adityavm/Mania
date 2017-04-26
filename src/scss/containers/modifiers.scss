@@ -5,19 +5,23 @@
   flex-direction: column;
   flex: 1;
   max-width: 50%;
+  border-left: 1px solid #111;
 
   #payload,
   #runner {
     display: flex;
     flex-direction: column;
+    flex: 1;
     background-color: $black;
     position: relative;
+    transition: max-height 0.2s ease-out;
+    max-height: 39px;
 
     .title {
       color: fade-out(#fff, 0.5);
       text-align: right;
-      padding: 5px;
-      font-size: 12px;
+      padding: 10px;
+      font-size: 14px;
     }
 
     &-editor {
@@ -49,7 +53,7 @@
     }
 
     &.expanded {
-      flex: 1;
+      max-height: 100vh;
 
       button,
       .status {
@@ -61,12 +65,7 @@
       cursor: pointer;
       color: fade-out(#fff, 0.75);
       background-color: #111;
-      font-style: italic;
       &:hover { color: fade-out(#fff, 0.5); }
     }
-  }
-
-  #runner {
-    border-top: 1px solid #111;
   }
 }

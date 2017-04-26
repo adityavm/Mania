@@ -1,3 +1,6 @@
+@import "fonts";
+@import "core/vars";
+
 html,
 body {
   padding: 0;
@@ -5,5 +8,5 @@ body {
 }
 
 body {
-  font-family: "Helvetica";
+  font-family: $font-sans;
 }

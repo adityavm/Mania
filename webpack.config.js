@@ -29,7 +29,8 @@ var cfg = {
     new CopyWebpackPlugin([
       { from: srcDir + "/js/ext", to: appDir + "/js" },
       { from: srcDir + "/index.html", to: appDir + "/index.html" },
-      { from: srcDir + "/assets/", to: appDir + "/" },
+      { from: srcDir + "/assets/icons", to: appDir + "/" },
+      { from: srcDir + "/assets/fonts", to: appDir + "/fonts" },
       { from: __dirname + "/app.js", to: appDir + "/app.js" },
       { from: __dirname + "/package.json", to: appDir + "/package.json" },
     ]),
@@ -42,6 +43,9 @@ var cfg = {
     },{
       test: /\.s[ac]ss$/,
       loaders: ["style", "css", "sass"],
+    },{
+      test: /\.(eot|svg|ttf|woff|woff2)(\?\w+)?$/,
+      loader: "file?name=fonts/[name].[ext]",
     }],
   },
   resolve: {

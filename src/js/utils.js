@@ -14,6 +14,12 @@ const utils = {
     headers.forEach(header => request.setRequestHeader(header[0], header[1]));
     request.responseType = "json";
     request.onload = function() {
+      if (request.status !== 200) {
+        console.log("here", request);
+        then.resolve(request.statusText);
+        return;
+      }
+
       lastResponse = request.response;
       if (lastResponse.error) {
         console.error(lastResponse);

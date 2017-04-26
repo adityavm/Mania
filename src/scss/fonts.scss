@@ -1,0 +1,46 @@
+$fontsDir: "../assets/fonts";
+
+@font-face {
+  font-family: "roboto";
+  src:
+    url("#{$fontsDir}/roboto-regular-webfont.woff2") format("woff2"),
+    url("#{$fontsDir}/roboto-regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "roboto";
+  src:
+    url("#{$fontsDir}/roboto-medium-webfont.woff2") format("woff2"),
+    url("#{$fontsDir}/roboto-medium-webfont.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "roboto";
+  src:
+    url("#{$fontsDir}/roboto-bold-webfont.woff2") format("woff2"),
+    url("#{$fontsDir}/roboto-bold-webfont.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "hack";
+  src:
+    url("#{$fontsDir}/hack-regular-webfont.woff2") format("woff2"),
+    url("#{$fontsDir}/hack-regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "hack";
+  src:
+    url("#{$fontsDir}/hack-bold-webfont.woff2") format("woff2"),
+    url("#{$fontsDir}/hack-bold-webfont.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+}

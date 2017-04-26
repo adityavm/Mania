@@ -25,7 +25,7 @@ const toggleCURL = () => {
 
 const constructCURL = (method, url, payload) => {
   method = method.toUpperCase();
-  payload = method === "GET" ? _.queryParams(payload) : payload;
+  payload = method === "GET" ? _.queryParams(JSON.parse(payload)) : payload;
 
   if (method === "GET") url += `?${payload}`;
 
