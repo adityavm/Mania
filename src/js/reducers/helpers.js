@@ -26,7 +26,11 @@ const createStepObject = (step = {}) => ({
   method: step.method || "POST",
   url: step.url || "",
   payload: step.payload || "",
-  response: step.response || "",
+  response: {
+    status: step.response.status || null,
+    time: step.response.time || 0,
+    text: step.response.text || "",
+  },
   evaluation: {
     assertions: (step.evaluation || {}).assertions || [],
     response: (step.evaluation || {}).response || "",

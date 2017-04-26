@@ -31,7 +31,7 @@ const evaluateStepRunner = (state = {}, query, step) => {
   const
     givenStep = state.queries[query].steps[step],
     runner = givenStep.modifier,
-    response = givenStep.response;
+    response = givenStep.response.text;
 
   // need response
   if (!response) return false;

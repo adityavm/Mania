@@ -14,27 +14,32 @@ const utils = {
     headers.forEach(header => request.setRequestHeader(header[0], header[1]));
     request.responseType = "json";
     request.onload = function() {
+      let outputObj = {
+        status: request.status,
+      };
+
       if (request.status !== 200) {
-        console.log("here", request);
-        then.resolve(request.statusText);
+        outputObj.response = request.statusText;
+        then.resolve(outputObj);
         return;
       }
 
       lastResponse = request.response;
+      outputObj.response = lastResponse;
       if (lastResponse.error) {
         console.error(lastResponse);
-        then.reject(lastResponse);
+        then.reject(outputObj);
         return;
       }
 
       try {
         data = lastResponse;
       } catch (e) {
-        then.reject({ error: e, response: lastResponse });
+        then.reject({ error: e, response: lastResponse, status: request.status });
         return;
       }
 
-      then.resolve(data);
+      then.resolve(outputObj);
     }
     request.send(type === "POST" ? payload : null);
     return then.promise;

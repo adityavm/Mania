@@ -93,15 +93,24 @@ const updateResponse = (state = {}) => {
 
 const executeQuery = (state = {}, dispatch) => {
   const { query, step } = getCurrents(state);
+  const startTime = new Date();
+
+  const constructResponseObj = (data, startTime) => {
+    const timeDiff = new Date() - startTime;
+    return {
+      text: JSON.stringify(data.response),
+      time: timeDiff,
+      status: data.status,
+    };
+  };
 
   executeStep(state, query, step)
   .then(
     data => {
-      console.log(data);
-      dispatch(actionSetCurrentStepValue("response", JSON.stringify(data)));
+      dispatch(actionSetCurrentStepValue("response", constructResponseObj(data, startTime)));
     },
     data => {
-      dispatch(actionSetCurrentStepValue("response", JSON.stringify(data)));
+      dispatch(actionSetCurrentStepValue("response", constructResponseObj(data, startTime)));
     }
   ).finally(() => {
     dispatch(actionSetCurrentStepValue("fetching", false));

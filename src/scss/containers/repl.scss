@@ -12,7 +12,7 @@
   display: flex;
   flex-direction: column;
 
-  .response-meta {
+  .response-actions {
     flex: none;
   }
 
@@ -47,6 +47,55 @@
       &.false { background-color: $red; }
 
       .result { color: rgba(0, 0, 0, 0.25); }
+    }
+  }
+
+  .response-meta {
+    display: flex;
+    flex: none;
+    justify-content: flex-end;
+    padding: 10px;
+
+    .meta-info {
+      font: 14px $font-sans;
+      border-radius: 5px;
+      padding: 5px 10px;
+
+      .label {
+        color: $text-mid;
+        margin-right: 5px;
+      }
+
+      & + .meta-info {
+        margin-left: 10px;
+      }
+    }
+
+    .status {
+      background-color: $base04;
+      color: $text-light;
+
+      &.s200 { background-color: $green; }
+
+      &.s404,
+      &.s401 { background-color: $red; }
+
+      &.s301,
+      &.s302 { background-color: $orange; }
+    }
+
+    .time {
+      color: $text-light;
+
+      &.good { background-color: $green; }
+
+      &.medium { background-color: $orange; }
+
+      &.bad { background-color: $red; }
+    }
+
+    .units {
+      color: $text-mid;
     }
   }
 

@@ -57,7 +57,7 @@ const mapStateToProps = (state = {}) => {
     }
   } else {
     try {
-      response = step.response ? JSON.parse(step.response) : null;
+      response = step.response.text ? JSON.parse(step.response.text) : null;
     } catch (e) {
       error = e.toString();
       response = null;
@@ -70,6 +70,8 @@ const mapStateToProps = (state = {}) => {
     payload: step.payload,
     error,
     response,
+    status: step.response.status,
+    time: step.response.time,
     fetching: step.fetching,
     assertions: step.evaluation.assertions,
     modified,
@@ -93,9 +95,9 @@ const currentStatus = (response, error, modified, fetching) => {
 };
 
 // render
-const Repl = ({ method, url, payload, response, assertions, error, modified, fetching }) => (
+const Repl = ({ method, url, payload, response, status, time, assertions, error, modified, fetching }) => (
   <div id="repl">
-    <div className="response-meta">
+    <div className="response-actions">
       {currentStatus(response, error, modified, fetching)}
 
       {response && assertions.map((assert, idx) => {
@@ -107,6 +109,13 @@ const Repl = ({ method, url, payload, response, assertions, error, modified, fet
     </div>
 
     {!fetching && response && <JSONTree data={response} theme={THEME} />}
+
+    {!fetching && response && !error && (
+      <div className="response-meta">
+        <span className={classnames("meta-info", "status", `s${status}`)}><span className="label">status</span>{status}</span>
+        <span className={classnames("meta-info", "time", { good: time <= 500, medium: 500 < time <= 2000, bad: time > 2000 })}><span className="label">time</span>{time}<span className="units">ms</span></span>
+      </div>
+    )}
 
     {!fetching && response && !error && (
       <div className="curl-container">
