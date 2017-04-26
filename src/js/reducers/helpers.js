@@ -54,7 +54,7 @@ const executeStep = (state = {}, query, step) => {
     defer = q.defer();
 
   let
-    payload = isGET ? _.queryParams(JSON.parse(givenStep.payload)) : givenStep.payload,
+    payload = isGET ? _.queryParams(givenStep.payload) : givenStep.payload,
     url = isGET ? `${givenStep.url}?${payload}` : givenStep.url;
 
   _.xhr(url, (isGET ? null : payload), [["content-type", "application/json"]]).then(data => defer.resolve(data), data => defer.reject(data));

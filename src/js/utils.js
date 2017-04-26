@@ -43,6 +43,10 @@ const utils = {
   queryParams: function(json) {
     let queryParams = [];
 
+    if (!json) return "";
+
+    json = typeof json === "string" ? JSON.parse(json) : json;
+
     // convert json into query params
     Object.keys(json).forEach(key => queryParams.push([key, json[key]]));
     return queryParams.map(segment => {
