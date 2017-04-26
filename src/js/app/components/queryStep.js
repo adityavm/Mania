@@ -10,14 +10,17 @@ const constructClasses = step => {
   return classNames.join(" ");
 };
 
-const QueryStep = ({ step, isActive, onClick }) => {
+const QueryStep = ({ step, isActive, activate, remove }) => {
   return (
-    <div className={classnames({ active: isActive }, constructClasses(step))} onClick={onClick}>
-      <span className={classnames("label", "method", step.method)}>{step.method}</span>
-      <span className={classnames("value", "url", { empty: !step.url })}>
-        <span className="hellip" dangerouslySetInnerHTML={{__html: "&hellip;"}}></span>
-        {step.url.substr(-urlCutOff) || "Enter API URL"}
-      </span>
+    <div className={classnames({ active: isActive }, constructClasses(step))}>
+      <div className="step-info" onClick={activate}>
+        <span className={classnames("label", "method", step.method)}>{step.method}</span>
+        <span className={classnames("value", "url", { empty: !step.url })}>
+          <span className="hellip" dangerouslySetInnerHTML={{__html: "&hellip;"}}></span>
+          {step.url.substr(-urlCutOff) || "Enter API URL"}
+        </span>
+      </div>
+      <div className="remove-step" onClick={remove}>&times;</div>
     </div>
   )
 };

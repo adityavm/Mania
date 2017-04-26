@@ -2,8 +2,7 @@
 import React from "react";
 
 // containers
-import CurrentQuery from "./containers/currentQuery";
-import SavedQueries from "./containers/savedQueries";
+import Queries from "./containers/queries";
 import StepEditor from "./containers/stepEditor";
 
 // styles
@@ -15,8 +14,7 @@ const App = () => (
   <div id="main">
     <div id="sidebar">
       <div className="title"></div>
-      <CurrentQuery />
-      <SavedQueries />
+      <Queries />
     </div>
     <div id="steps">
       <StepEditor />

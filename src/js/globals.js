@@ -2,11 +2,23 @@
 const getCurrents = (state = {}, count = true) => {
   const
     query = state.currentQuery,
-    step = state.queries[state.currentQuery].currentStep;
+    queryObj = state.queries[query],
+    step = state.queries[state.currentQuery].currentStep,
+    stepObj = state.queries[query].steps[step];
+
+  const newObj = obj => JSON.parse(JSON.stringify(obj));
+
+  if (!queryObj) {
+    console.warn(`query missing for ${query}`, queryObj, newObj(state));
+  }
+
+  if (!stepObj) {
+    console.warn(`step missing for ${step}`, stepObj, newObj(state));
+  }
 
   return {
-    query: count ? query : state.queries[query],
-    step: count ? step : state.queries[query].steps[step],
+    query: count ? query : queryObj || {},
+    step: count ? step : stepObj || {},
   };
 };
 

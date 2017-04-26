@@ -1,0 +1,93 @@
+@import "../core/vars";
+
+#queries {
+  .title {
+    font: 14px $font-sans;
+    color: $text-light;
+    margin-bottom: 10px;
+    padding: 0 5px;
+  }
+
+  .query {
+    padding: 10px;
+
+    .step {
+      display: flex;
+      border-radius: 5px;
+      cursor: pointer;
+      opacity: 0.75;
+
+      & + .step { margin-top: 5px; }
+
+      &.active {
+        cursor: default;
+        opacity: 1;
+      }
+
+      .step-info {
+        flex: 1;
+      }
+
+      .remove-step {
+        opacity: 0;
+        color: $red;
+        border: 1px solid $red;
+        border-radius: 50%;
+        height: 16px;
+        width: 16px;
+        font-size: 10px;
+        display: inline-block;
+        line-height: 15px;
+        text-align: center;
+        -webkit-font-smoothing: antialiased;
+        cursor: pointer;
+      }
+
+      &:hover {
+        opacity: 1;
+
+        .remove-step {
+          opacity: 0.75;
+
+          &:hover { opacity: 1; }
+        }
+      }
+    }
+
+    .label {
+      padding: 5px;
+      border-radius: 3px;
+      color: $text-light;
+      font-size: 11px;
+      width: 35px;
+
+      &.method {
+        &.POST { color: $orange; }
+        &.GET { color: $green; }
+      }
+    }
+
+    .value {
+      color: $text-light;
+      font-size: 12px;
+      margin: 5px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      -webkit-font-smoothing: antialiased;
+
+      .hellip { display: none; }
+
+      &.empty {
+        font-style: italic;
+        opacity: 0.75;
+      }
+    }
+
+    .step.show-hellip .value .hellip { display: inline-block; }
+
+    .buttons {
+      margin-top: 10px;
+    }
+  }
+}

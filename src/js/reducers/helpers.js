@@ -6,17 +6,18 @@ import _ from "../utils";
 // app
 import { getCurrents } from "../globals";
 
-const { splice } = ops;
+const { splice, set } = ops;
 
 // return new state object with new val for key for current step
 const replaceInCurrentStep = (state = {}, key = "", val = "") => {
-  const query = state.queries[state.currentQuery];
-  const newStep = { ...getCurrents(state, false).step };
-
-  newStep[key] = val;
+  const
+    { step, query } = getCurrents(state, false),
+    newStep = set(key, val, step);
 
   // update query steps
   query.steps = splice(query.currentStep, 1, newStep, query.steps);
+  state.queries = splice(state.currentQuery, 1, {...query}, state.queries);
+
   return { ...state };
 };
 
@@ -36,6 +37,7 @@ const createStepObject = (step = {}) => ({
 
 // creates a new query object
 const createQueryObject = () => ({
+  title: "Anonymous Query",
   steps: [createStepObject()],
   currentStep: 0,
 });
