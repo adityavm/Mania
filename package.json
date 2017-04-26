@@ -2,7 +2,7 @@
   "name": "Mania",
   "version": "0.5.0",
   "description": "Your besty for REST calls.",
-  "repository": "https://github.com/adityavm/RESTy",
+  "repository": "https://github.com/adityavm/Mania",
   "main": "app.js",
   "dependencies": {},
   "devDependencies": {

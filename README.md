@@ -1,4 +1,4 @@
-# RESTy
+# Mania
 
 Your besty for REST calls.
 
