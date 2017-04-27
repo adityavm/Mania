@@ -58,11 +58,10 @@
 
     .meta-info {
       font: 14px $font-sans;
-      border-radius: 5px;
       padding: 5px 10px;
 
       .label {
-        color: $text-mid;
+        color: rgba(255, 255, 255, 0.5);
         margin-right: 5px;
       }
 
@@ -95,7 +94,7 @@
     }
 
     .units {
-      color: $text-mid;
+      color: rgba(255, 255, 255, 0.5);
     }
   }
 

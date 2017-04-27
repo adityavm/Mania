@@ -6,7 +6,8 @@ import { connect } from "react-redux";
 import { getCurrents } from "../../../globals";
 import setCurrentStepValue from "../../actions/setCurrentStepValue";
 import MethodButton from "./methodButton";
-import QueryButton from "./executeButton";
+import StepButton from "./executeStepButton";
+import QueryButton from "./executeQueryButton";
 
 // style
 import "scss/containers/query";
@@ -15,6 +16,8 @@ import "scss/containers/query";
 
 const mapStateToProps = (state = {}) => ({
   url: getCurrents(state, false).step.url,
+  query: getCurrents(state).query,
+  step: getCurrents(state).step,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -23,11 +26,12 @@ const mapDispatchToProps = dispatch => ({
 
 // render
 
-const StepUrl = ({ url, setUrl }) => (
+const StepUrl = ({ url, query, step, setUrl }) => (
   <div id="query">
     <MethodButton />
     <input type="text" placeholder="Enter API URL" value={url} onChange={setUrl} />
-    <QueryButton />
+    <StepButton queryIdx={query} stepIdx={step} />
+    <QueryButton queryIdx={query} />
   </div>
 );
 

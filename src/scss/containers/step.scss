@@ -11,6 +11,8 @@
     button {
       flex: none;
     }
+
+    button + button { margin-left: 5px; }
   }
 
   .bottom {

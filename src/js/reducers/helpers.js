@@ -66,37 +66,9 @@ const createStateObject = () => ({
   currentQuery: 0,
 });
 
-// make xhr call for given step
-// pass prevResponse to not depend on redux state update
-const executeStep = (state = {}, query, step, prevResponse) => {
-  const
-    givenStep = state.queries[query].steps[step],
-    isGET = givenStep.method === "GET";
-
-  let payload, payloadInContext;
-
-  try {
-    payload = givenStep.payload,
-    payloadInContext = payloadInResponseContext(payload, prevResponse);  // modify payload in context of previous response
-  } catch (e) {
-    payloadInContext = {};
-  }
-
-  let modifiedPayload = isGET ? _.queryParams(payloadInContext) : JSON.stringify(payloadInContext); // transform
-
-  let
-    defer = q.defer(),
-    url = isGET && modifiedPayload ? `${givenStep.url}?${modifiedPayload}` : givenStep.url;
-
-  _.xhr(url, (isGET ? null : modifiedPayload), [["content-type", "application/json"]]).then(data => defer.resolve(data), data => defer.reject(data));
-
-  return defer.promise;
-};
-
 // exports
 exports.replaceInCurrentStep = replaceInCurrentStep;
 exports.replaceInQueryStep = replaceInQueryStep;
 exports.createStepObject = createStepObject;
 exports.createQueryObject = createQueryObject;
 exports.createStateObject = createStateObject;
-exports.executeStep = executeStep;
