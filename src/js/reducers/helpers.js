@@ -4,7 +4,7 @@ import q from "q";
 import _ from "../utils";
 
 // app
-import { getCurrents } from "../globals";
+import { getCurrents, payloadInResponseContext } from "../globals";
 
 const { splice, set } = ops;
 
@@ -21,15 +21,29 @@ const replaceInCurrentStep = (state = {}, key = "", val = "") => {
   return { ...state };
 };
 
+// return new state with new value for key in given arbitrary step and query indices
+const replaceInQueryStep = (state = {}, query, step, key = "", val = "") => {
+  const
+    queryObj = state.queries[query],
+    stepObj = queryObj.steps[step],
+    newStep = set(key, val, stepObj);
+
+  // update query steps
+  queryObj.steps = splice(step, 1, newStep, queryObj.steps);
+  state.queries = splice(query, 1, {...queryObj}, state.queries);
+
+  return { ...state };
+};
+
 // creates a new or copies a given step object
 const createStepObject = (step = {}) => ({
   method: step.method || "POST",
   url: step.url || "",
   payload: step.payload || "",
   response: {
-    status: step.response.status || null,
-    time: step.response.time || 0,
-    text: step.response.text || "",
+    status: (step.response || {}).status || null,
+    time: (step.response || {}).time || 0,
+    text: (step.response || {}).text || "",
   },
   evaluation: {
     assertions: (step.evaluation || {}).assertions || [],
@@ -53,23 +67,35 @@ const createStateObject = () => ({
 });
 
 // make xhr call for given step
-const executeStep = (state = {}, query, step) => {
+// pass prevResponse to not depend on redux state update
+const executeStep = (state = {}, query, step, prevResponse) => {
   const
     givenStep = state.queries[query].steps[step],
-    isGET = givenStep.method === "GET",
-    defer = q.defer();
+    isGET = givenStep.method === "GET";
+
+  let payload, payloadInContext;
+
+  try {
+    payload = givenStep.payload,
+    payloadInContext = payloadInResponseContext(payload, prevResponse);  // modify payload in context of previous response
+  } catch (e) {
+    payloadInContext = {};
+  }
+
+  let modifiedPayload = isGET ? _.queryParams(payloadInContext) : JSON.stringify(payloadInContext); // transform
 
   let
-    payload = isGET ? _.queryParams(givenStep.payload) : givenStep.payload,
-    url = isGET ? `${givenStep.url}?${payload}` : givenStep.url;
+    defer = q.defer(),
+    url = isGET && modifiedPayload ? `${givenStep.url}?${modifiedPayload}` : givenStep.url;
 
-  _.xhr(url, (isGET ? null : payload), [["content-type", "application/json"]]).then(data => defer.resolve(data), data => defer.reject(data));
+  _.xhr(url, (isGET ? null : modifiedPayload), [["content-type", "application/json"]]).then(data => defer.resolve(data), data => defer.reject(data));
 
   return defer.promise;
 };
 
 // exports
 exports.replaceInCurrentStep = replaceInCurrentStep;
+exports.replaceInQueryStep = replaceInQueryStep;
 exports.createStepObject = createStepObject;
 exports.createQueryObject = createQueryObject;
 exports.createStateObject = createStateObject;

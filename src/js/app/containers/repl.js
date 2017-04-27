@@ -5,7 +5,7 @@ import classnames from "classnames";
 import _ from "../../utils";
 
 // app
-import { getCurrents } from "../../globals";
+import { getCurrents, payloadInResponseContext } from "../../globals";
 import { THEME } from "../constants";
 import JSONTree from "react-json-tree";
 import Editor from "../components/editor";
@@ -23,9 +23,17 @@ const toggleCURL = () => {
   curl.classList[method](className);
 };
 
-const constructCURL = (method, url, payload) => {
+const constructCURL = (method, url, payload, prevResponse) => {
   method = method.toUpperCase();
-  payload = method === "GET" ? _.queryParams(payload) : payload;
+
+  let payloadInContext;
+  try {
+    payloadInContext = payloadInResponseContext(payload, prevResponse); // modify payload in context of previous response
+  } catch (e) {
+    payloadInContext = {};
+  }
+
+  payload = method === "GET" ? _.queryParams(payloadInContext) : JSON.stringify(payloadInContext);
 
   if (method === "GET" && payload) url += `?${payload}`;
 
@@ -41,11 +49,15 @@ const constructCURL = (method, url, payload) => {
 
 const mapStateToProps = (state = {}) => {
   const { step } = getCurrents(state, false);
+  const { query: queryCount, step: stepCount } = getCurrents(state);
 
   let
     response,
     modified = false,
     error;
+
+  let prevResponse = stepCount === 0 ? "" : state.queries[queryCount].steps[stepCount - 1].response.text;
+  prevResponse = prevResponse === "" ? {} : JSON.parse(prevResponse);
 
   if (step.evaluation.response) {
     try {
@@ -75,6 +87,7 @@ const mapStateToProps = (state = {}) => {
     fetching: step.fetching,
     assertions: step.evaluation.assertions,
     modified,
+    prevResponse,
   };
 };
 
@@ -95,7 +108,7 @@ const currentStatus = (response, error, modified, fetching) => {
 };
 
 // render
-const Repl = ({ method, url, payload, response, status, time, assertions, error, modified, fetching }) => (
+const Repl = ({ method, url, payload, response, status, time, assertions, error, modified, fetching, prevResponse }) => (
   <div id="repl">
     <div className="response-actions">
       {currentStatus(response, error, modified, fetching)}
@@ -108,7 +121,7 @@ const Repl = ({ method, url, payload, response, status, time, assertions, error,
       })}
     </div>
 
-    {!fetching && response && <JSONTree data={response} theme={THEME} />}
+    {!fetching && response && <JSONTree data={response} theme={THEME} hideRoot />}
 
     {!fetching && response && !error && (
       <div className="response-meta">
@@ -120,7 +133,7 @@ const Repl = ({ method, url, payload, response, status, time, assertions, error,
     {!fetching && response && !error && (
       <div className="curl-container">
         <div className="title" onClick={toggleCURL}>cURL Code</div>
-        <textarea value={constructCURL(method, url, payload)} readOnly />
+        <textarea value={constructCURL(method, url, payload, prevResponse)} readOnly />
       </div>
     )}
   </div>

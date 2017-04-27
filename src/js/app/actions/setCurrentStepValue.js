@@ -1,8 +1,8 @@
 // constants
-import { SET_STEP_VALUE } from "../constants";
+import { SET_CURRENT_STEP_VALUE } from "../constants";
 
 const setCurrentStepValue = (key, value) => ({
-  type: SET_STEP_VALUE,
+  type: SET_CURRENT_STEP_VALUE,
   key,
   value,
 });

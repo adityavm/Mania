@@ -16,10 +16,7 @@ import "scss/components/button";
 const mapStateToProps = (state = {}) => ({});
 
 const mapDispatchToProps = dispatch => ({
-  executeQuery: () => {
-    dispatch(setCurrentStepValue("fetching", true));
-    dispatch(executeQuery(dispatch)); // pass dispatcher to allow updating state after promises resolve
-  },
+  executeQuery: () => dispatch(executeQuery(dispatch)), // pass dispatcher to allow updating state after promises resolve
 });
 
 const QueryButton = ({ executeQuery }) => (

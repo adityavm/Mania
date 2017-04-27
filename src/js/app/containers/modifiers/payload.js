@@ -3,7 +3,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 // app
-import { getCurrents } from "../../../globals";
+import { getCurrents, payloadInResponseContext } from "../../../globals";
 import setCurrentStepValue from "../../actions/setCurrentStepValue";
 import Editor from "../../components/editor";
 
@@ -13,10 +13,16 @@ const mapStateToProps = (state = {}) => ({
   get error() {
     let
       error = null,
-      payload = getCurrents(state, false).step.payload;
+      { query, step } = getCurrents(state),
+      payload = state.queries[query].steps[step].payload;
+
     if (!payload) return null;
+
     try {
-      JSON.parse(payload);
+      let
+        prevPayload = step === 0 ? "" : state.queries[query].steps[step - 1].response.text,
+        response = prevPayload === "" ? {} : JSON.parse(prevPayload);
+      payloadInResponseContext(payload, response);
     } catch (e) {
       error = e.toString();
     }

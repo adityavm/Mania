@@ -41,6 +41,7 @@ const utils = {
 
       then.resolve(outputObj);
     }
+
     request.send(type === "POST" ? payload : null);
     return then.promise;
   },
@@ -50,7 +51,7 @@ const utils = {
 
     if (!json) return "";
 
-    json = typeof json === "string" ? JSON.parse(json) : json;
+    json = typeof json === "string" ? eval(`(function(window, document, json){ return ${json}; })({}, {}, json)`) : json;
 
     // convert json into query params
     Object.keys(json).forEach(key => queryParams.push([key, json[key]]));

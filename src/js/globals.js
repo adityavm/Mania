@@ -22,4 +22,7 @@ const getCurrents = (state = {}, count = true) => {
   };
 };
 
+const payloadInResponseContext = (payload, response) => eval(`(function(window, document, response){return ${payload};})({}, {}, response)`);
+
 exports.getCurrents = getCurrents;
+exports.payloadInResponseContext = payloadInResponseContext;

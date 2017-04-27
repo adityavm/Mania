@@ -20,6 +20,9 @@ const QueryStep = ({ step, isActive, activate, remove }) => {
           {step.url.substr(-urlCutOff) || "Enter API URL"}
         </span>
       </div>
+      <div className="step-status">
+        {step.fetching ? <span className="fetching" dangerouslySetInnerHTML={{__html: "&bull;"}}></span> : ""}
+      </div>
       <div className="remove-step" onClick={remove}>&times;</div>
     </div>
   )
