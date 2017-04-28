@@ -25,6 +25,7 @@ const QueryStep = ({ step, isActive, activate, remove }) => {
       </div>
       <div className="step-status">
         {step.fetching ? <span className="fetching" dangerouslySetInnerHTML={{__html: "&bull;"}}></span> : ""}
+        {step.response.status !== 200 ? <span className="error" dangerouslySetInnerHTML={{__html: "&bull;"}}></span> : ""}
       </div>
       <div className="remove-step" onClick={remove}><Icon type="cross" /></div>
     </div>

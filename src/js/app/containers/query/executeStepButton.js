@@ -60,7 +60,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const StepButton = ({ queryIdx, stepIdx, queries, executeStep }) => (
-  <Button type="default" color="orange" icon="play" onClick={() => executeStep(queryIdx, queries[queryIdx], stepIdx, queries[queryIdx].steps[stepIdx])} label="Step" />
+  <Button type="default" color="cyan" icon="play" onClick={() => executeStep(queryIdx, queries[queryIdx], stepIdx, queries[queryIdx].steps[stepIdx])} label="Step" />
 );
 
 export default connect(

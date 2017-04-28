@@ -5,7 +5,7 @@
   flex-direction: column;
   flex: 1;
   max-width: 50%;
-  border-left: 1px solid #111;
+  border-left: 1px solid $vanta;
 
   #payload,
   #runner {
@@ -67,7 +67,7 @@
       .title {
         cursor: pointer;
         color: fade-out(#fff, 0.75);
-        background-color: #111;
+        background-color: $vanta;
 
         &:hover { color: fade-out(#fff, 0.5); }
 

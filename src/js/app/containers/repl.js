@@ -111,14 +111,16 @@ const currentStatus = (response, error, modified, fetching) => {
 // render
 const Repl = ({ method, url, payload, response, status, time, assertions, error, modified, fetching, prevResponse }) => (
   <div id="repl">
-    <div className="response-actions">
-      {!fetching && response && assertions.map((assert, idx) => {
-        return <span key={idx} className={classnames("status", "assertion", String(assert[1]))}>
-          {assert[0]}
-          <span className="label result">&nbsp;{assert[1] ? "succeeded" : "failed"}</span>
-        </span>;
-      })}
-    </div>
+    {!fetching && response && assertions.length > 0 && (
+      <div className="response-actions">
+        {assertions.map((assert, idx) => {
+          return <span key={idx} className={classnames("status", "assertion", String(assert[1]))}>
+            {assert[0]}
+            <span className="label result">&nbsp;{assert[1] ? "succeeded" : "failed"}</span>
+          </span>;
+        })}
+      </div>
+    )}
 
     {!fetching && response && <JSONTree data={response} theme={THEME} hideRoot />}
 

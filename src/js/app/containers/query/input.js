@@ -10,7 +10,7 @@ import StepButton from "./executeStepButton";
 import QueryButton from "./executeQueryButton";
 
 // style
-import "scss/containers/query";
+import "scss/containers/queryInput";
 
 // internal
 

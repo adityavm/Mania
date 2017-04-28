@@ -9,31 +9,29 @@
   }
 
   .query {
-    padding: 10px;
-
     .step {
       display: flex;
       align-items: center;
       cursor: pointer;
-      opacity: 0.75;
-
-      & + .step { margin-top: 5px; }
+      padding: 10px 5px 10px 10px;
 
       &.active {
+        background-color: $vanta;
         cursor: default;
-        opacity: 1;
       }
 
-      .step-info {
-        flex: 1;
-      }
+      .label { opacity: 1; }
+
+      .step-info { flex: 1; }
 
       .step-status {
+        flex: none;
         line-height: 1em;
-        padding: 0 3px;
-        width: 5px;
+        width: 10px;
+        text-align: center;
 
         .fetching { color: $orange; }
+        .error { color: $red; }
       }
 
       .remove-step {
@@ -51,18 +49,14 @@
         -webkit-font-smoothing: antialiased;
         cursor: pointer;
 
-        .icon {
-          opacity: 1 !important;
-          position: relative;
-          top: 1px;
-        }
+        .icon { opacity: 1 !important; }
       }
 
       &:hover {
-        opacity: 1;
+        background-color: fade-out($vanta, 0.5);
 
         .remove-step {
-          opacity: 0.75;
+          opacity: 0.5;
 
           &:hover { opacity: 1; }
         }
@@ -71,10 +65,9 @@
 
     .label {
       display: inline-block;
-      padding: 5px;
       color: $text-light;
       font-size: 11px;
-      width: 20px;
+      width: 30px;
 
       &.method {
         &.POST { color: $orange; }
@@ -85,7 +78,7 @@
     .value {
       color: $text-light;
       font-size: 12px;
-      margin: 5px;
+      margin: 0 0 0 5px;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -102,7 +95,7 @@
     .step.show-hellip .value .hellip { display: inline-block; }
 
     .buttons {
-      margin-top: 10px;
+      padding: 5px;
     }
   }
 }

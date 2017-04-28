@@ -66,7 +66,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const QueryButton = ({ queryIdx, queries, executeQuery }) => (
-  <Button type="default" color="green" onClick={() => executeQuery(queryIdx, queries[queryIdx])} label="Query" />
+  <Button type="default" color="blue" onClick={() => executeQuery(queryIdx, queries[queryIdx])} label="Query" />
 );
 
 export default connect(
