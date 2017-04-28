@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { getCurrents, payloadInResponseContext } from "../../../globals";
 import setCurrentStepValue from "../../actions/setCurrentStepValue";
 import Editor from "../../components/editor";
+import Icon from "../../components/icon";
 
 
 const mapStateToProps = (state = {}) => ({
@@ -36,7 +37,11 @@ const mapDispatchToProps = dispatch => ({
 
 const Payload = ({ payload, error, setPayload, onClick }) => (
   <div id="payload" className="expanded">
-    <div className="title" onClick={() => onClick("payload")}>Request Payload</div>
+    <div className="title" onClick={() => onClick("payload")}>
+      Request Payload
+      <Icon type="menu" />
+      <Icon type="menu-down" />
+    </div>
     <Editor id="payload-editor" language="javascript" onChange={setPayload} value={payload} />
     {error && <span className="status error">{error}</span>}
   </div>

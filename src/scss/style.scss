@@ -1,5 +1,6 @@
-@import "fonts";
 @import "core/vars";
+@import "fonts";
+@import "icons";
 
 html,
 body {
@@ -9,4 +10,10 @@ body {
 
 body {
   font-family: $font-sans;
+}
+
+.icon,
+.label {
+  color: currentColor;
+  opacity: 0.5;
 }

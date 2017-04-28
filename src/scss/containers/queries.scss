@@ -42,12 +42,13 @@
         border-radius: 50%;
         height: 16px;
         width: 16px;
-        font-size: 10px;
-        display: inline-block;
-        line-height: 15px;
+        display: inline-flex;
+        align-items: center;
         text-align: center;
         -webkit-font-smoothing: antialiased;
         cursor: pointer;
+
+        .icon { opacity: 1 !important; }
       }
 
       &:hover {

@@ -8,6 +8,7 @@ import setCurrentStepValue from "../../actions/setCurrentStepValue";
 import evaluateStepRunner from "../../actions/evaluateStepRunner";
 import Button from "../../components/button";
 import Editor from "../../components/editor";
+import Icon from "../../components/icon";
 
 
 const mapStateToProps = (state = {}) => ({
@@ -23,9 +24,13 @@ const mapDispatchToProps = dispatch => ({
 
 const Runner = ({ currentQuery, currentStep, currentModifier, setModifier, evaluateRunner, onClick }) => (
   <div id="runner">
-    <div className="title" onClick={() => onClick("runner")}>REPL Runner</div>
+    <div className="title" onClick={() => onClick("runner")}>
+      REPL Runner
+      <Icon type="menu" />
+      <Icon type="menu-up" />
+    </div>
     <Editor id="runner-editor" language="javascript" onChange={setModifier} value={currentModifier} />
-    <Button type="default" color="green" onClick={() => evaluateRunner(currentQuery, currentStep)} label="Update" />
+    <Button type="default" color="green" icon="run" onClick={() => evaluateRunner(currentQuery, currentStep)} label="Update" />
   </div>
 );
 

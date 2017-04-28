@@ -8,6 +8,7 @@ import setQueryStepValue from "../../actions/setQueryStepValue";
 import evaluateStepRunner from "../../actions/evaluateStepRunner";
 import { executeStep } from "../../../globals";
 import Button from "../../components/button";
+import Icon from "../../components/button";
 
 // style
 import "scss/components/button";
@@ -59,7 +60,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const StepButton = ({ queryIdx, stepIdx, queries, executeStep }) => (
-  <Button type="default" color="orange" onClick={() => executeStep(queryIdx, queries[queryIdx], stepIdx, queries[queryIdx].steps[stepIdx])} label="Step" />
+  <Button type="default" color="orange" icon="play" onClick={() => executeStep(queryIdx, queries[queryIdx], stepIdx, queries[queryIdx].steps[stepIdx])} label="Step" />
 );
 
 export default connect(

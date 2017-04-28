@@ -8,6 +8,7 @@ import _ from "../../utils";
 import { getCurrents, payloadInResponseContext } from "../../globals";
 import { THEME } from "../constants";
 import JSONTree from "react-json-tree";
+import Icon from "../components/icon";
 import Editor from "../components/editor";
 
 // styles
@@ -102,37 +103,38 @@ const currentStatus = (response, error, modified, fetching) => {
   if (fetching) label = "Fetching API ...";
   if (!fetching && !response) label = "Click Play to execute";
 
-  classes = classnames("status", { modified, error, fetching, empty: !fetching && !response });
+  classes = classnames("meta-info", "info", { modified, error, fetching, empty: !fetching && !response });
 
-  return label && classes && <span className={classes}>{label}</span>;
+  return label && classes && <span className={classes}><Icon type="info" />{label}</span>;
 };
 
 // render
 const Repl = ({ method, url, payload, response, status, time, assertions, error, modified, fetching, prevResponse }) => (
   <div id="repl">
     <div className="response-actions">
-      {currentStatus(response, error, modified, fetching)}
-
-      {response && assertions.map((assert, idx) => {
+      {!fetching && response && assertions.map((assert, idx) => {
         return <span key={idx} className={classnames("status", "assertion", String(assert[1]))}>
           {assert[0]}
-          <span className="result">&nbsp;{assert[1] ? "succeeded" : "failed"}</span>
+          <span className="label result">&nbsp;{assert[1] ? "succeeded" : "failed"}</span>
         </span>;
       })}
     </div>
 
     {!fetching && response && <JSONTree data={response} theme={THEME} hideRoot />}
 
-    {!fetching && response && !error && (
-      <div className="response-meta">
+    <div className="response-meta">
+      {currentStatus(response, error, modified, fetching)}
+      {!fetching && response && (
         <span className={classnames("meta-info", "status", `s${status}`)}><span className="label">status</span>{status}</span>
-        <span className={classnames("meta-info", "time", { good: time <= 500, medium: 500 < time <= 2000, bad: time > 2000 })}><span className="label">time</span>{time}<span className="units">ms</span></span>
-      </div>
-    )}
+      )}
+      {!fetching && response && (
+        <span className={classnames("meta-info", "time", { good: time <= 500, medium: 500 < time <= 2000, bad: time > 2000 })}><span className="label">time</span>{time}<span className="label units">ms</span></span>
+      )}
+    </div>
 
     {!fetching && response && !error && (
       <div className="curl-container">
-        <div className="title" onClick={toggleCURL}>cURL Code</div>
+        <div className="title" onClick={toggleCURL}><Icon type="code" /> cURL Code</div>
         <textarea value={constructCURL(method, url, payload, prevResponse)} readOnly />
       </div>
     )}

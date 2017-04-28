@@ -26,7 +26,7 @@ const Query = ({ query, queryIdx, isActive, addStep, activateStep, removeStep })
     {/* <div className="title">{query.title}</div> */}
     {query.steps.map((step, idx) => <QueryStep step={step} key={idx} isActive={idx === query.currentStep} activate={() => activateStep(queryIdx, idx)} remove={() => removeStep(queryIdx, idx)} />)}
     <div className="buttons">
-      <Button type="text" onClick={() => addStep(queryIdx)} label="Add New Step" />
+      <Button type="text" icon="plus" onClick={() => addStep(queryIdx)} label="Step" />
     </div>
   </div>
 );

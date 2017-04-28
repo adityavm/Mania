@@ -2,6 +2,9 @@
 import React from "react";
 import classnames from "classnames";
 
+// app
+import Icon from "./icon";
+
 const urlCutOff = 20;
 
 const constructClasses = step => {
@@ -23,7 +26,7 @@ const QueryStep = ({ step, isActive, activate, remove }) => {
       <div className="step-status">
         {step.fetching ? <span className="fetching" dangerouslySetInnerHTML={{__html: "&bull;"}}></span> : ""}
       </div>
-      <div className="remove-step" onClick={remove}>&times;</div>
+      <div className="remove-step" onClick={remove}><Icon type="cross" /></div>
     </div>
   )
 };
