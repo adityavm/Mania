@@ -27,6 +27,7 @@ There's the added benefit of knowing when a flow breaks, which means something h
 ## Roadmap
 
 1. Support multiple query pipes
+2. Add auto-updating
 
 ## License
 
