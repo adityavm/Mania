@@ -41,7 +41,7 @@ const createStepObject = (step = {}) => ({
   url: step.url || "",
   payload: step.payload || "",
   response: {
-    status: (step.response || {}).status || null,
+    status: (step.response || {}).status || 200,
     time: (step.response || {}).time || 0,
     text: (step.response || {}).text || "",
   },

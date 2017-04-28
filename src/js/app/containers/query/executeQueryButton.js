@@ -15,7 +15,6 @@ import "scss/components/button";
 
 // execute a whole query
 const executeQuery = (dispatch, queryIdx, query) => {
-  const startTime = new Date();
 
   const constructResponseObj = (data, startTime) => {
     const timeDiff = new Date() - startTime;
@@ -29,6 +28,7 @@ const executeQuery = (dispatch, queryIdx, query) => {
   // needs response so that it can make next call
   // before state is officially updated
   const execute = (query, queryObj, step, stepObj, dispatch, response = {}) => {
+    const startTime = new Date();
 
     const dispatchAssign = data => {
       let obj = constructResponseObj(data, startTime);
