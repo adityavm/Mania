@@ -5,7 +5,7 @@ import classnames from "classnames";
 // app
 import Icon from "./icon";
 
-const urlCutOff = 20;
+const urlCutOff = 19;
 
 const constructClasses = step => {
   let classNames = ["step"];

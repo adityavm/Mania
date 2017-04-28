@@ -45,7 +45,7 @@ const executeQueryStep = (dispatch, queryIdx, queryObj, stepIdx, stepObj) => {
       });
   };
 
-  let prevResponse = stepIdx === 0 ? "{}" : ((queryObj.steps[stepIdx - 1] || {}).response || {}).text;
+  let prevResponse = stepIdx === 0 ? "{}" : ((queryObj.steps[stepIdx - 1] || {}).response || {}).text || "{}";
   execute(queryIdx, queryObj, stepIdx, stepObj, dispatch, JSON.parse(prevResponse));
 };
 
