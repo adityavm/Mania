@@ -28,6 +28,10 @@ There's the added benefit of knowing when a flow breaks, which means something h
 
 1. Support multiple query pipes
 
+## License
+
+[Modified MIT License](LICENSE.md)
+
 ## Thanks
 
 This would have taken way longer than necessary without the shoulders of these great projects.
