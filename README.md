@@ -1,8 +1,20 @@
-# Mania
-
-Your besty for REST calls.
+<p align="center">
+  <img src="src/assets/icons/background.png" width="64" height="64"></img>
+  <h3 align="center">Mania</h3>
+  <p align="center">Your besty for REST calls.</p>
+</p>
 
 ![Mania](screenshot.png)
+
+---
+
+## Table of Contents
+
+[Motivations](#motivations)  
+[Roadmap](#roadmap)  
+[License](LICENSE.md)  
+[Thanks](#thanks)  
+
 
 ## Motivations
 
@@ -24,14 +36,17 @@ One of the most useful things of Promises is promise chaining, and applying tran
 
 There's the added benefit of knowing when a flow breaks, which means something has changed from what was expected and should be investigated.
 
+
 ## Roadmap
 
 1. Support multiple query pipes
 2. Add auto-updating
 
+
 ## License
 
 [Modified MIT License](LICENSE.md)
+
 
 ## Thanks
 
