@@ -29,9 +29,18 @@
         line-height: 1em;
         width: 10px;
         text-align: center;
+        margin: 0 3px;
 
         .fetching { color: $orange; }
-        .error { color: $red; }
+
+        .error {
+          color: $red;
+
+          .icon {
+            font-size: 10px;
+            -webkit-font-smoothing: antialiased;
+          }
+        }
       }
 
       .remove-step {

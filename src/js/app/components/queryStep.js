@@ -14,6 +14,10 @@ const constructClasses = step => {
 };
 
 const QueryStep = ({ step, isActive, activate, remove }) => {
+
+  const failedAssertions = step.evaluation.assertions.filter(a => !a[1]);
+  const successResponse = step.response.status === 200;
+
   return (
     <div className={classnames({ active: isActive }, constructClasses(step))}>
       <div className="step-info" onClick={activate}>
@@ -25,7 +29,8 @@ const QueryStep = ({ step, isActive, activate, remove }) => {
       </div>
       <div className="step-status">
         {step.fetching ? <span className="fetching" dangerouslySetInnerHTML={{__html: "&bull;"}}></span> : ""}
-        {step.response.status !== 200 ? <span className="error" dangerouslySetInnerHTML={{__html: "&bull;"}}></span> : ""}
+        {!step.fetching && !successResponse ? <span className="error" dangerouslySetInnerHTML={{__html: "&bull;"}}></span> : ""}
+        {!step.fetching && successResponse && failedAssertions.length > 0 ? <span className="error"><Icon type="info" /></span> : ""}
       </div>
       <div className="remove-step" onClick={remove}><Icon type="cross" /></div>
     </div>
