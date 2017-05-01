@@ -1,14 +1,12 @@
 <p align="center">
-  <img src="src/assets/icons/background.png" width="64" height="64"></img>
+  <img src="http://i.imgur.com/X52iKPr.png" width="64" height="64"></img>
   <h3 align="center">Mania v0.9.3</h3>
   <p align="center">Your besty for REST calls.</p>
 </p>
 
 ![Mania](screenshot.png)
 
----
-
-## Currently <img src="https://travis-ci.org/adityavm/Mania.svg?branch=master"></img>
+[![Build Status](https://img.shields.io/travis/adityavm/Mania/master.svg?style=flat-square)](https://travis-ci.org/adityavm/Mania)
 
 
 ## Table of Contents
