@@ -31,7 +31,7 @@ const addStep = (oldState, queryIdx) => {
     state = { ...oldState },
     query = state.queries[queryIdx];
 
-  query.steps.push(createStepObject());
+  query = set("steps", [...query.steps, createStepObject()], query);
   query = set("currentStep", query.steps.length - 1, query);
   state.queries = splice(queryIdx, 1, query, state.queries);
 
@@ -81,7 +81,7 @@ const setQueryStepValue = (state, query, step, key, val) => replaceInQueryStep(s
 const addQuery = oldState => {
   const state = { ...oldState };
 
-  state.queries.push(createQueryObject());
+  state.queries = [ ...state.queries, createQueryObject() ];
   state.currentQuery += 1;
   return state;
 };

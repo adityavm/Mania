@@ -55,13 +55,11 @@
       align-items: center;
       color: $base04;
 
-      &.s200 { color: $green; }
+      &.s2xx { color: $green; }
+      &.s3xx { color: $orange; }
 
-      &.s404,
-      &.s401 { color: $red; }
-
-      &.s301,
-      &.s302 { color: $orange; }
+      &.s4xx,
+      &.s5xx { color: $red; }
     }
 
     .info {

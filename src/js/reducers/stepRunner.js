@@ -6,11 +6,9 @@ const sandbox = (fn = "", response) => {
   let assertions = [];
 
   // collect all assertions
-  const addAssertion = (description, check) => {
-    if (typeof description !== "string") {
-      [check, description] = [description, `unlabeled assertion ${assertions.length + 1}`];
-    }
-    assertions.push(assert(description, check));
+  const addAssertion = (check, description) => {
+    if (!description) description = `unlabeled assertion ${assertions.length + 1}`;
+    assertions.push(assert(check, description));
     return undefined;
   };
 

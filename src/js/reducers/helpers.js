@@ -9,30 +9,32 @@ import { getCurrents, payloadInResponseContext } from "../globals";
 const { splice, set } = ops;
 
 // return new state object with new val for key for current step
-const replaceInCurrentStep = (state = {}, key = "", val = "") => {
-  const
-    { step, query } = getCurrents(state, false),
+const replaceInCurrentStep = (oldState = {}, key = "", val = "") => {
+  let
+    state = { ...oldState },
+    { step, query } = getCurrents(oldState, false),
     newStep = set(key, val, step);
 
   // update query steps
-  query.steps = splice(query.currentStep, 1, newStep, query.steps);
-  state.queries = splice(state.currentQuery, 1, {...query}, state.queries);
+  query = { ...query, steps: splice(query.currentStep, 1, newStep, query.steps) };
+  state.queries = splice(state.currentQuery, 1, { ...query }, state.queries);
 
-  return { ...state };
+  return state;
 };
 
 // return new state with new value for key in given arbitrary step and query indices
-const replaceInQueryStep = (state = {}, query, step, key = "", val = "") => {
-  const
+const replaceInQueryStep = (oldState = {}, query, step, key = "", val = "") => {
+  let
+    state = { ...oldState },
     queryObj = state.queries[query],
     stepObj = queryObj.steps[step],
     newStep = set(key, val, stepObj);
 
   // update query steps
-  queryObj.steps = splice(step, 1, newStep, queryObj.steps);
+  queryObj = { ...queryObj, steps: splice(step, 1, newStep, queryObj.steps) };
   state.queries = splice(query, 1, {...queryObj}, state.queries);
 
-  return { ...state };
+  return state;
 };
 
 // creates a new or copies a given step object

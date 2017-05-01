@@ -15,8 +15,8 @@ const constructClasses = step => {
 
 const QueryStep = ({ step, isActive, activate, remove }) => {
 
-  const failedAssertions = step.evaluation.assertions.filter(a => !a[1]);
-  const successResponse = step.response.status === 200;
+  const failedAssertions = step.evaluation.assertions.filter(a => !a[0]);
+  const successResponse = parseInt(step.response.status / 100) === 2;
 
   return (
     <div className={classnames({ active: isActive }, constructClasses(step))}>

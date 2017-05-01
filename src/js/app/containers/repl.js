@@ -114,9 +114,9 @@ const Repl = ({ method, url, payload, response, status, time, assertions, error,
     {!fetching && response && assertions.length > 0 && (
       <div className="response-actions">
         {assertions.map((assert, idx) => {
-          return <span key={idx} className={classnames("status", "assertion", String(assert[1]))}>
-            {assert[0]}
-            <span className="label result">&nbsp;{assert[1] ? "succeeded" : "failed"}</span>
+          return <span key={idx} className={classnames("status", "assertion", String(assert[0]))}>
+            {assert[1]}
+            <span className="label result">&nbsp;{assert[0] ? "succeeded" : "failed"}</span>
           </span>;
         })}
       </div>
@@ -127,7 +127,7 @@ const Repl = ({ method, url, payload, response, status, time, assertions, error,
     <div className="response-meta">
       {currentStatus(response, error, modified, fetching)}
       {!fetching && response && (
-        <span className={classnames("meta-info", "status", `s${status}`)}><span className="label">status</span>{status}</span>
+        <span className={classnames("meta-info", "status", `s${parseInt(status/100)}xx`)}><span className="label">status</span>{status}</span>
       )}
       {!fetching && response && (
         <span className={classnames("meta-info", "time", { good: time <= 500, medium: 500 < time <= 2000, bad: time > 2000 })}><span className="label">time</span>{time}<span className="label units">ms</span></span>
