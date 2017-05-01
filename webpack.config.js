@@ -29,7 +29,7 @@ var cfg = {
     new CopyWebpackPlugin([
       { from: srcDir + "/js/ext", to: appDir + "/js" },
       { from: srcDir + "/index.html", to: appDir + "/index.html" },
-      { from: srcDir + "/assets/icons", to: appDir + "/" },
+      { from: srcDir + "/assets/icons", to: appDir + "/build/" },
       { from: srcDir + "/assets/fonts", to: appDir + "/fonts" },
       { from: __dirname + "/app.js", to: appDir + "/app.js" },
       { from: __dirname + "/package.json", to: appDir + "/package.json" },

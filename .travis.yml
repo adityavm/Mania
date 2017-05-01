@@ -1,0 +1,4 @@
+node_js: 7
+before_script:
+  - npm install mocha babel-register babel-plugin-transform-object-rest-spread babel-preset-es2015 babel-preset-react redux q immutable-ops
+script: npm test
