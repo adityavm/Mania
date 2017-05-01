@@ -8,21 +8,12 @@ import _ from "../../utils";
 import { getCurrents, payloadInResponseContext } from "../../globals";
 import { THEME } from "../constants";
 import JSONTree from "react-json-tree";
-import Icon from "../components/icon";
-import Editor from "../components/editor";
+import Icon from "js/app/components/icon";
+import Editor from "js/app/components/editor";
+import Curl from "js/app/components/curl";
 
 // styles
 import "scss/containers/repl";
-
-
-const toggleCURL = () => {
-  const
-    curl = document.querySelector("#repl .curl-container"),
-    className = "active",
-    method = curl.classList.contains(className) ? "remove" : "add";
-
-  curl.classList[method](className);
-};
 
 const constructCURL = (method, url, payload, prevResponse) => {
   method = method.toUpperCase();
@@ -134,12 +125,7 @@ const Repl = ({ method, url, payload, response, status, time, assertions, error,
       )}
     </div>
 
-    {!fetching && response && !error && (
-      <div className="curl-container">
-        <div className="title" onClick={toggleCURL}><Icon type="code" /> cURL Code</div>
-        <textarea value={constructCURL(method, url, payload, prevResponse)} readOnly />
-      </div>
-    )}
+    {!fetching && response && !error && <Curl value={constructCURL(method, url, payload, prevResponse)} />}
   </div>
 );
 
