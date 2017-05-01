@@ -1,12 +1,15 @@
 <p align="center">
   <img src="src/assets/icons/background.png" width="64" height="64"></img>
-  <h3 align="center">Mania</h3>
+  <h3 align="center">Mania v0.9.3</h3>
   <p align="center">Your besty for REST calls.</p>
 </p>
 
 ![Mania](screenshot.png)
 
 ---
+
+## Currently <img src="https://travis-ci.org/adityavm/Mania.svg?branch=master"></img>
+
 
 ## Table of Contents
 
@@ -35,6 +38,8 @@ I wanted to solve it once and for all for myself.
 One of the most useful things of Promises is promise chaining, and applying transform functions along the way if needed. I wanted to use that same concept to allow creation of a flow of API calls that depend on each others' responses. Very few APIs work in isolation, especially ones that are hidden behind authentication. By creating a flow, it's easy to just run the whole flow rather than make API calls separately and copy over values manually.
 
 There's the added benefit of knowing when a flow breaks, which means something has changed from what was expected and should be investigated.
+
+[Read all about it](http://adityamukherjee.com/longform/introducing-mania)
 
 
 ## Roadmap
