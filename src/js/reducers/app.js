@@ -7,6 +7,7 @@ import ops from "immutable-ops";
 import {  ADD_STEP,
           REMOVE_STEP,
           ACTIVATE_STEP,
+          REORDER_STEP,
           ADD_QUERY,
           SET_STEP_VALUE,
           SET_CURRENT_STEP_VALUE,
@@ -65,6 +66,18 @@ const activateStep = (oldState, queryIdx, step) => {
   return state;
 }
 
+const reorderStep = (oldState, queryIdx, fromIdx, toIdx) => {
+  let
+    state = { ...oldState },
+    query = state.queries[queryIdx];
+
+  const ref = query.steps.splice(fromIdx, 1);
+  query = { ...query, steps: splice(toIdx, 0, ref, query.steps) };
+  state.queries = splice(queryIdx, 1, query, state.queries);
+
+  return state;
+};
+
 //
 const toggleStepMethod = state => {
   const { step } = getCurrents(state, false);
@@ -106,6 +119,7 @@ const AppState = (state, action) => {
   if (action.type === ADD_STEP)                 return addStep(newState, action.query);
   if (action.type === REMOVE_STEP)              return removeStep(newState, action.query, action.step);
   if (action.type === ACTIVATE_STEP)            return activateStep(newState, action.query, action.step);
+  if (action.type === REORDER_STEP)             return reorderStep(newState, action.query, action.from, action.to);
   if (action.type === ADD_QUERY)                return addQuery(newState);
   if (action.type === SET_CURRENT_STEP_VALUE)   return setCurrentStepValue(newState, action.key, action.value);
   if (action.type === SET_STEP_VALUE)           return setQueryStepValue(newState, action.query, action.step, action.key, action.value);

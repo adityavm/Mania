@@ -1,6 +1,7 @@
 export const ADD_STEP = "ADD_STEP";
 export const REMOVE_STEP = "REMOVE_STEP";
 export const ACTIVATE_STEP = "ACTIVATE_STEP";
+export const REORDER_STEP = "REORDER_STEP";
 export const ADD_QUERY = "ADD_QUERY";
 export const SET_STEP_VALUE = "SET_STEP_VALUE";
 export const SET_CURRENT_STEP_VALUE = "SET_CURRENT_STEP_VALUE";

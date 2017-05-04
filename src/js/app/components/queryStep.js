@@ -13,13 +13,49 @@ const constructClasses = step => {
   return classNames.join(" ");
 };
 
-const QueryStep = ({ step, isActive, activate, remove }) => {
+/* drag-drop functions */
+
+const dragStart = event => {
+  if (!event) return;
+  event.target.classList.add("dragging");
+  let idx = event.target.getAttribute("data-step-index");
+  event.dataTransfer.setData("step", parseInt(idx));
+};
+
+const dragEnd = event => {
+  if (!event) return;
+  event.target.classList.remove("dragging");
+}
+
+const dragOver = event => {
+  event.target.classList.add("droppable");
+  event.preventDefault();
+};
+
+const dragLeave = event => {
+  event.target.classList.remove("droppable");
+};
+
+const drop = (event, reorder) => {
+  let
+    from = parseInt(event.dataTransfer.getData("step")),
+    to = parseInt(event.target.getAttribute("data-step-index"));
+
+  event.target.classList.remove("droppable");
+  event.preventDefault();
+
+  if (!Number.isNaN(to)) reorder(from, to); // trigger
+};
+
+// render
+
+const QueryStep = ({ stepIdx, step, isActive, activate, remove, reorder }) => {
 
   const failedAssertions = step.evaluation.assertions.filter(a => !a[0]);
   const successResponse = parseInt(step.response.status / 100) === 2;
 
   return (
-    <div className={classnames({ active: isActive }, constructClasses(step))}>
+    <div className={classnames({ active: isActive }, constructClasses(step))} draggable="true" onDragStart={dragStart} onDragEnd={dragEnd} onDragOver={dragOver} onDragLeave={dragLeave} onDrop={event => drop(event, reorder)} data-step-index={stepIdx}>
       <div className="step-info" onClick={activate}>
         <span className={classnames("label", "method", step.method)}>{step.method}</span>
         <span className={classnames("value", "url", { empty: !step.url })}>

@@ -72,6 +72,25 @@ describe("AppState", () => {
     assert(newState.queries[0].currentStep === 0);
   });
 
+  it("should reorder given step", () => {
+    // arrange
+    let initState = { queries: [{ steps: [{ url: "1234" }, { url: "2345" }], currentStep: 1 }], currentQuery: 0 };
+
+    // act
+    let newState = App.default(initState, { type: "REORDER_STEP", query: 0, from: 0, to: 1 });
+
+    // assert
+    assert(newState.queries[0].steps !== initState.queries[0].steps, "case 1 / steps should be different");
+    assert(newState.queries[0].steps[0].url === "2345", "case 1 / first step should be previously second");
+    assert(newState.queries[0].steps[1].url === "1234", "case 1 / second step should be previously first");
+
+    let newState2 = App.default(newState, { type: "REORDER_STEP", query: 0, from: 0, to: 1 });
+
+    assert(newState2.queries[0].steps !== newState.queries[0].steps, "case 2 / steps should be different");
+    assert(newState2.queries[0].steps[1].url === "2345", "case 2 / first step should be previously second");
+    assert(newState2.queries[0].steps[0].url === "1234", "case 2 / second step should be previously first");
+  });
+
   it("should change current step method to POST", () => {
     // arrange
     let initState = { queries: [{ steps: [{ method: "GET" }], currentStep: 0 }], currentQuery: 0 };

@@ -1,10 +1,10 @@
 @import "../core/vars";
 
 #sidebar {
-  -webkit-app-region: drag;
   background-color: $black;
 
   > .title {
+    -webkit-app-region: drag;
     display: flex;
     align-items: center;
     color: $yellow;

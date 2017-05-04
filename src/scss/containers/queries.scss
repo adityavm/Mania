@@ -20,6 +20,13 @@
         cursor: default;
       }
 
+      &.dragging { opacity: 0.5; }
+
+      &.droppable:not(.dragging) {
+        padding: 9px 4px 9px 9px;
+        border: 1px dashed $stroke-grey;
+      }
+
       .label { opacity: 1; }
 
       .step-info { flex: 1; }
