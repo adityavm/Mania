@@ -41,7 +41,7 @@ const Query = ({ query, queryIdx, isActive, addStep, activateStep, removeStep, r
     </div>
   ) : (
     <div className={classnames("query")} onClick={() => activateQuery(queryIdx)}>
-      <div className="title">{query.title}</div>
+      <div className="title"> {query.title} </div>
     </div>
   );
 };

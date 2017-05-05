@@ -11,6 +11,7 @@
       overflow: hidden;
       align-items: center;
       position: relative;
+      text-transform: uppercase;
 
       input {
         font: 14px $font-sans;
@@ -22,6 +23,7 @@
         padding: 10px 30px 10px 10px;
         text-overflow: ellipsis;
         overflow: hidden;
+        text-transform: uppercase;
 
         &:focus {
           background-color: fade-out($vanta, 0.5);
@@ -34,7 +36,6 @@
         transition: opacity 0.2s linear;
         color: fade-out($text-grey, 0.5);
         position: absolute;
-        right: 10px;
       }
     }
 
@@ -46,6 +47,8 @@
 
         input { color: $text-light; }
 
+        .icon { right: 10px; }
+
         &:hover {
           input { font-style: italic; }
           .icon { opacity: 1; }
@@ -53,10 +56,12 @@
       }
     }
 
-    &:not(.active):hover {
-      background-color: fade-out($vanta, 0.5);
+    &:not(.active) {
+      &:hover {
+        background-color: fade-out($vanta, 0.5);
 
-      .title { cursor: pointer; }
+        .title { cursor: pointer; }
+      }
     }
 
     .step {
