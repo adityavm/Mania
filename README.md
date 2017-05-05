@@ -1,6 +1,6 @@
 <p align="center">
   <img src="http://i.imgur.com/X52iKPr.png" width="64" height="64"></img>
-  <h3 align="center">Mania v0.9.4</h3>
+  <h3 align="center">Mania v0.9.5</h3>
   <p align="center">Your besty for REST calls.</p>
 </p>
 
