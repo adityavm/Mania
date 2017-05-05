@@ -34,8 +34,10 @@ function createMenu() {
     {
       label: "Mania",
       submenu: [
-        { label: "Quit", accelerator: "Command+Q", click: function() { app.quit(); }}
-      ]
+        { label: "Hide", accelerator: "Command+H", selector: "hide:" },
+        { type: "separator" },
+        { label: "Quit", accelerator: "Command+Q", click: function() { app.quit(); }},
+      ],
     },
     {
       label: "Edit",
@@ -47,8 +49,8 @@ function createMenu() {
         { label: "Copy", accelerator: "CmdOrCtrl+C", selector: "copy:" },
         { label: "Paste", accelerator: "CmdOrCtrl+V", selector: "paste:" },
         { label: "Select All", accelerator: "CmdOrCtrl+A", selector: "selectAll:" },
-      ]
-    }
+      ],
+    },
   ];
 
   const menu = Menu.buildFromTemplate(template);
