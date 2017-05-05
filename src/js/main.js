@@ -16,7 +16,10 @@ const store = createStore(AppState, getState ? JSON.parse(getState) : null);
 
 (() => {
   let timeout = null;
+  const savedState = () => document.querySelector(".saved-status");
+
   store.subscribe(() => {
+    savedState().classList.add("saving");
     const state = store.getState();
     if (timeout) {
       clearTimeout(timeout);
@@ -26,7 +29,8 @@ const store = createStore(AppState, getState ? JSON.parse(getState) : null);
       localStorage.setItem("state", JSON.stringify(state));
       timeout = null;
       console.log("Saved @ ", new Date());
-    }, 5000);
+      savedState().classList.remove("saving");
+    }, 2000);
   });
 })(store);
 

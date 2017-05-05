@@ -1,6 +1,7 @@
 @import "../core/vars";
 
 #sidebar {
+  position: relative;
   background-color: $black;
 
   > .title {
@@ -12,5 +13,27 @@
     font-weight: 300;
     font-size: 14px;
     height: 50px;
+  }
+
+  .saved-status {
+    font: 11px $font-sans;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    height: 50px;
+    width: 100%;
+    color: $yellow;
+    opacity: 0;
+    transition: opacity 0.2s ease-out;
+
+    .icon {
+      font-size: 150%;
+      opacity: 0.5;
+      margin-right: 5px;
+    }
+
+    &.saving { opacity: 0.3; }
   }
 }

@@ -1,7 +1,8 @@
 // main
 import React from "react";
 
-// containers
+// app
+import Icon from "./components/icon";
 import Queries from "./containers/queries";
 import StepEditor from "./containers/stepEditor";
 
@@ -15,6 +16,7 @@ const App = () => (
     <div id="sidebar">
       <div className="title"></div>
       <Queries />
+      <div className="saved-status"><Icon type="info" /> SAVING...</div>
     </div>
     <div id="steps">
       <StepEditor />

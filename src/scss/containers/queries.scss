@@ -39,8 +39,7 @@
     }
 
     &.active {
-      background-color: fade-out($vanta, 0.75);
-      border-bottom: 1px solid $vanta;
+      background-color: $vanta;
 
       .title {
         padding: 0;
@@ -66,8 +65,10 @@
       cursor: pointer;
       padding: 10px 5px 10px 10px;
 
+      $activeBg: #111;
+
       &.active {
-        background-color: $vanta;
+        background-color: $activeBg;
         cursor: default;
       }
 
@@ -120,7 +121,7 @@
       }
 
       &:hover {
-        background-color: fade-out($vanta, 0.25);
+        background-color: fade-out($activeBg, 0.25);
 
         .remove-step {
           opacity: 0.5;
