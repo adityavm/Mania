@@ -3,9 +3,9 @@ import React from "react";
 import { connect } from "react-redux";
 
 // app
-import { getCurrents } from "../../../globals";
-import toggleStepMethod from "../../actions/toggleStepMethod";
-import Button from "../../components/button";
+import { getCurrents } from "js/globals";
+import { toggleStepMethod } from "js/app/actions/stepActions";
+import Button from "js/app/components/button";
 
 // styles
 import "scss/components/button";

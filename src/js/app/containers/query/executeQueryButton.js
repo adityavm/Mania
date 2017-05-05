@@ -5,10 +5,9 @@ import q from "q";
 import _ from "../../../utils";
 
 // app
-import setQueryStepValue from "../../actions/setQueryStepValue";
-import evaluateStepRunner from "../../actions/evaluateStepRunner";
-import { executeStep } from "../../../globals";
-import Button from "../../components/button";
+import { setQueryStepValue, evaluateStepRunner } from "js/app/actions/stepActions";
+import { executeStep } from "js/globals";
+import Button from "js/app/components/button";
 
 // style
 import "scss/components/button";

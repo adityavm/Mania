@@ -1,14 +1,13 @@
 // main
 import React from "react";
 import { connect } from "react-redux";
-import _ from "../../../utils";
+import _ from "js/utils";
 
 // app
-import setQueryStepValue from "../../actions/setQueryStepValue";
-import evaluateStepRunner from "../../actions/evaluateStepRunner";
-import { executeStep } from "../../../globals";
-import Button from "../../components/button";
-import Icon from "../../components/button";
+import { setQueryStepValue, evaluateStepRunner } from "js/app/actions/stepActions";
+import { executeStep } from "js/globals";
+import Button from "js/app/components/button";
+import Icon from "js/app/components/button";
 
 // style
 import "scss/components/button";

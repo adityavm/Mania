@@ -3,8 +3,8 @@ import React from "react";
 import { connect } from "react-redux";
 
 // app
-import { getCurrents } from "../../../globals";
-import setCurrentStepValue from "../../actions/setCurrentStepValue";
+import { getCurrents } from "js/globals";
+import { setCurrentStepValue } from "js/app/actions/stepActions";
 import MethodButton from "./methodButton";
 import StepButton from "./executeStepButton";
 import QueryButton from "./executeQueryButton";

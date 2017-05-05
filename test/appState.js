@@ -155,6 +155,31 @@ describe("AppState", () => {
     assert(newState.queries.length === 1, "add a new query");
   });
 
+  it("should activate the given query", () => {
+    // arrange / set up responses
+    let initState = { queries: [{ id: 1 }, { id: 2 }], currentQuery: 0 };
+
+    // act
+    let newState = App.default(initState, { type: "ACTIVATE_QUERY", query: 1 });
+
+    // assert
+    assert(newState.queries === initState.queries, "return same `queries` array");
+    assert(newState.currentQuery === 1, "activate new query");
+  });
+
+  it("should set value in arbitrary query", () => {
+    // arrange / set up responses
+    let initState = { queries: [{ id: 1 }, { id: 2 }], currentQuery: 0 };
+
+    // act
+    let newState = App.default(initState, { type: "SET_QUERY_VALUE", query: 1, key: "id", value: 3 });
+
+    // assert
+    assert(newState.queries !== initState.queries, "return new `queries` array");
+    assert(newState.queries[1] !== initState.queries[1], "return new query object");
+    assert(newState.queries[1].id === 3, "update key 'id' with new '3'");
+  });
+
   describe("when evaluating step runner", () => {
 
     it("should run code against step response", () => {

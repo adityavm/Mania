@@ -15,7 +15,7 @@ function createWindow () {
     slashes: true,
   }));
 
-  createMenu(); // create menu
+  // createMenu(); // create menu
 
   mainWindow.on("closed", function () {
     mainWindow = null;

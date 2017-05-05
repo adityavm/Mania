@@ -3,12 +3,11 @@ import React from "react";
 import { connect } from "react-redux";
 
 // app
-import { getCurrents } from "../../../globals";
-import setCurrentStepValue from "../../actions/setCurrentStepValue";
-import evaluateStepRunner from "../../actions/evaluateStepRunner";
-import Button from "../../components/button";
-import Editor from "../../components/editor";
-import Icon from "../../components/icon";
+import { getCurrents } from "js/globals";
+import { setCurrentStepValue, evaluateStepRunner } from "js/app/actions/stepActions";
+import Button from "js/app/components/button";
+import Editor from "js/app/components/editor";
+import Icon from "js/app/components/icon";
 
 
 const mapStateToProps = (state = {}) => ({

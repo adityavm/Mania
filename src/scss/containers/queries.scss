@@ -1,14 +1,65 @@
 @import "../core/vars";
 
 #queries {
-  .title {
-    font: 14px $font-sans;
-    color: $text-light;
-    margin-bottom: 10px;
-    padding: 0 5px;
-  }
-
   .query {
+    .title {
+      display: flex;
+      font: 14px $font-sans;
+      color: $text-grey;
+      padding: 10px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      align-items: center;
+      position: relative;
+
+      input {
+        font: 14px $font-sans;
+        color: $text-grey;
+        border: 0;
+        background-color: transparent;
+        flex: 1;
+        width: 100%;
+        padding: 10px 30px 10px 10px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+
+        &:focus {
+          background-color: fade-out($vanta, 0.5);
+          outline: none;
+        }
+      }
+
+      .icon {
+        opacity: 0;
+        transition: opacity 0.2s linear;
+        color: fade-out($text-grey, 0.5);
+        position: absolute;
+        right: 10px;
+      }
+    }
+
+    &.active {
+      background-color: fade-out($vanta, 0.75);
+      border-bottom: 1px solid $vanta;
+
+      .title {
+        padding: 0;
+
+        input { color: $text-light; }
+
+        &:hover {
+          input { font-style: italic; }
+          .icon { opacity: 1; }
+        }
+      }
+    }
+
+    &:not(.active):hover {
+      background-color: fade-out($vanta, 0.5);
+
+      .title { cursor: pointer; }
+    }
+
     .step {
       display: flex;
       align-items: center;
@@ -69,7 +120,7 @@
       }
 
       &:hover {
-        background-color: fade-out($vanta, 0.5);
+        background-color: fade-out($vanta, 0.25);
 
         .remove-step {
           opacity: 0.5;
@@ -109,9 +160,5 @@
     }
 
     .step.show-hellip .value .hellip { display: inline-block; }
-
-    .buttons {
-      padding: 5px;
-    }
   }
 }

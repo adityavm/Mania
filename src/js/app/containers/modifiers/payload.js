@@ -3,10 +3,10 @@ import React from "react";
 import { connect } from "react-redux";
 
 // app
-import { getCurrents, payloadInResponseContext } from "../../../globals";
-import setCurrentStepValue from "../../actions/setCurrentStepValue";
-import Editor from "../../components/editor";
-import Icon from "../../components/icon";
+import { getCurrents, payloadInResponseContext } from "js/globals";
+import { setCurrentStepValue } from "js/app/actions/stepActions";
+import Editor from "js/app/components/editor";
+import Icon from "js/app/components/icon";
 
 
 const mapStateToProps = (state = {}) => ({
