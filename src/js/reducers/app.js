@@ -1,5 +1,4 @@
 // base
-import { combineReducers } from "redux";
 import q from "q";
 import ops from "immutable-ops";
 

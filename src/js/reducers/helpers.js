@@ -1,10 +1,11 @@
 // base
 import ops from "immutable-ops";
 import q from "q";
-import _ from "../utils";
+import _ from "js/utils";
 
 // app
-import { getCurrents, payloadInResponseContext } from "../globals";
+import { executeStep, getCurrents, payloadInResponseContext } from "js/globals";
+import { setQueryStepValue, evaluateStepRunner } from "js/app/actions/stepActions";
 
 const { splice, set } = ops;
 
@@ -68,9 +69,74 @@ const createStateObject = () => ({
   currentQuery: 0,
 });
 
+/* execution functions */
+
+// set response
+const dispatchAssign = (dispatch, query, step) => {
+  // response object
+  const constructResponseObj = (data, startTime) => {
+    const timeDiff = new Date() - startTime;
+    return {
+      text: JSON.stringify(data.response),
+      time: timeDiff,
+      status: data.status,
+    };
+  };
+
+  return function(data, startTime) {
+    let obj = constructResponseObj(data, startTime);
+    dispatch(setQueryStepValue(query, step, "response", obj));
+  }
+};
+
+// needs response so that it can make next call
+// before state is officially updated
+const execute = (query, queryObj, step, stepObj, dispatch, response) => {
+  const
+    startTime = new Date(),
+    setResponse = dispatchAssign(dispatch, query, step);
+
+  dispatch(setQueryStepValue(query, step, "fetching", true));
+
+  let promise = executeStep(queryObj, stepObj, response);
+  promise
+    .then(
+      data => setResponse(data, startTime),
+      data => setResponse(data, startTime),
+    )
+    .finally(data => {
+      dispatch(setQueryStepValue(query, step, "fetching", false));
+      dispatch(evaluateStepRunner(query, step));
+    });
+
+  return promise;
+};
+
+// execute a whole query
+const executeQuery = (dispatch, queryIdx, query) => {
+  // construct promise chain and run
+  let request = q({});
+  query.steps.forEach((step, stepIdx) => {
+    request = request.then(
+      promise => execute(queryIdx, query, stepIdx, step, dispatch, promise.response),
+      promise => execute(queryIdx, query, stepIdx, step, dispatch, promise.response),
+    );
+  });
+};
+
+// execute a whole query
+const executeQueryStep = (dispatch, queryIdx, queryObj, stepIdx, stepObj) => {
+  let prevResponse = stepIdx === 0 ? "{}" : ((queryObj.steps[stepIdx - 1] || {}).response || {}).text || "{}";
+  execute(queryIdx, queryObj, stepIdx, stepObj, dispatch, JSON.parse(prevResponse));
+};
+
+/* eo execution functions */
+
 // exports
 exports.replaceInCurrentStep = replaceInCurrentStep;
 exports.replaceInQueryStep = replaceInQueryStep;
 exports.createStepObject = createStepObject;
 exports.createQueryObject = createQueryObject;
 exports.createStateObject = createStateObject;
+exports.executeQuery = executeQuery;
+exports.executeQueryStep = executeQueryStep;

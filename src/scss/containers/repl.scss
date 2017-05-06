@@ -70,10 +70,7 @@
 
       .icon { margin-right: 5px; }
 
-      &.empty {
-        font-weight: 500;
-        color: $text-mid;
-      }
+      &.empty { color: $text-mid; }
 
       &.fetching { color: $yellow; }
 

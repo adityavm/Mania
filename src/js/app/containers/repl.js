@@ -92,7 +92,7 @@ const currentStatus = (response, error, modified, fetching) => {
   if (modified) label = "Response is modified";
   if (error) label = error;
   if (fetching) label = "Fetching API ...";
-  if (!fetching && !response) label = "Click Play to execute";
+  if (!fetching && !response) label = "Click the Step button or ⌘+Enter to execute";
 
   classes = classnames("meta-info", "info", { modified, error, fetching, empty: !fetching && !response });
 

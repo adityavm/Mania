@@ -40,6 +40,18 @@ function createMenu() {
       ],
     },
     {
+      label: "Queries",
+      submenu: [
+        { label: "Previous Step", accelerator: "Command+K", click: function() { mainWindow.webContents.send("KEYBOARD", "PREVIOUS_STEP"); }},
+        { label: "Next Step", accelerator: "Command+J", click: function() { mainWindow.webContents.send("KEYBOARD", "NEXT_STEP"); }},
+        { label: "Excute Step", accelerator: "Command+Enter", click: function() { mainWindow.webContents.send("KEYBOARD", "EXECUTE_STEP"); }},
+        { type: "separator" },
+        { label: "Previous Query", accelerator: "Command+Shift+K", click: function() { mainWindow.webContents.send("KEYBOARD", "PREVIOUS_QUERY"); }},
+        { label: "Next Query", accelerator: "Command+Shift+J", click: function() { mainWindow.webContents.send("KEYBOARD", "NEXT_QUERY"); }},
+        { label: "Next Query", accelerator: "Command+Shift+Enter", click: function() { mainWindow.webContents.send("KEYBOARD", "EXECUTE_QUERY"); }},
+      ],
+    },
+    {
       label: "Edit",
       submenu: [
         { label: "Undo", accelerator: "CmdOrCtrl+Z", selector: "undo:" },
@@ -49,6 +61,12 @@ function createMenu() {
         { label: "Copy", accelerator: "CmdOrCtrl+C", selector: "copy:" },
         { label: "Paste", accelerator: "CmdOrCtrl+V", selector: "paste:" },
         { label: "Select All", accelerator: "CmdOrCtrl+A", selector: "selectAll:" },
+      ],
+    },
+    {
+      label: "Debug",
+      submenu: [
+        { label: "Toggle Inspector", accelerator: "Command+Option+I", click: function() { mainWindow.webContents.toggleDevTools(); }},
       ],
     },
   ];
