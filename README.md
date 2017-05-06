@@ -1,6 +1,6 @@
 <p align="center">
   <img src="http://i.imgur.com/X52iKPr.png" width="64" height="64"></img>
-  <h3 align="center">Mania v0.9.5</h3>
+  <h3 align="center">Mania v0.9.6</h3>
   <p align="center">Your besty for REST calls.</p>
 </p>
 
@@ -42,8 +42,7 @@ There's the added benefit of knowing when a flow breaks, which means something h
 
 ## Roadmap
 
-1. Support multiple query pipes
-2. Add auto-updating
+1. Add auto-updating
 
 
 ## License

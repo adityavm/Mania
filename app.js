@@ -63,6 +63,12 @@ function createMenu() {
         { label: "Select All", accelerator: "CmdOrCtrl+A", selector: "selectAll:" },
       ],
     },
+    {
+      label: "Debug",
+      submenu: [
+        { label: "Toggle Inspector", accelerator: "Command+Option+I", click: function() { mainWindow.webContents.toggleDevTools(); }},
+      ],
+    },
   ];
 
   const menu = Menu.buildFromTemplate(template);

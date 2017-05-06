@@ -38,7 +38,7 @@ const handleKeyboard = (store, msg) => {
       store.dispatch(StepActions.activateStep(queryIdx, stepIdx - 1));
     break;
   case Constants.EVENT.NEXT_STEP:
-    if (stepIdx < queryObj.steps.length)
+    if (stepIdx < queryObj.steps.length - 1)
       store.dispatch(StepActions.activateStep(queryIdx, stepIdx + 1));
     break;
   case Constants.EVENT.EXECUTE_STEP:
@@ -51,7 +51,7 @@ const handleKeyboard = (store, msg) => {
       store.dispatch(QueryActions.activateQuery(queryIdx - 1));
     break;
   case Constants.EVENT.NEXT_QUERY:
-    if (queryIdx < state.queries.length)
+    if (queryIdx < state.queries.length - 1)
       store.dispatch(QueryActions.activateQuery(queryIdx + 1));
     break;
   case Constants.EVENT.EXECUTE_QUERY:

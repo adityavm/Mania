@@ -41,13 +41,12 @@
       $highlight: darken($grey, 20%);
 
       background-color: $vanta;
-      margin-bottom: 10px;
+      padding-bottom: 10px;
 
-      &:not(:first-child) { margin-top: 10px; }
+      &:not(:first-child) { padding-top: 10px; }
 
       .title {
         padding: 0;
-        background: linear-gradient(to bottom, $highlight, darken($highlight, 5%));
 
         input { color: $text-light; }
 
@@ -55,17 +54,16 @@
 
         &:hover { input { font-style: italic; } }
       }
-
-      .buttons {
-        border-top: 1px solid $highlight;
-      }
     }
 
     &:not(.active) {
       &:hover {
         background-color: fade-out($vanta, 0.5);
 
-        .title { cursor: pointer; }
+        .title {
+          cursor: pointer;
+          color: $text-mid;
+        }
       }
     }
 
@@ -75,7 +73,7 @@
       cursor: pointer;
       padding: 10px 5px 10px 10px;
 
-      $activeBg: #111;
+      $activeBg: #0c0c0c;
 
       &.active {
         background-color: $activeBg;
@@ -118,16 +116,20 @@
         color: $red;
         border: 1px solid $red;
         border-radius: 50%;
-        height: 16px;
-        width: 16px;
+        height: 14px;
+        width: 14px;
         font-size: 9px;
-        display: inline-flex;
         align-items: center;
         justify-content: center;
         -webkit-font-smoothing: antialiased;
         cursor: pointer;
+        display: none;
 
         .icon { opacity: 1 !important; }
+      }
+
+      &.active .remove-step {
+        display: inline-flex;
       }
 
       &:hover {
