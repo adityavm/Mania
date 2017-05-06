@@ -17,17 +17,14 @@ button {
     padding: 5px 10px;
 
     &.green { color: $green; }
-
     &.orange { color: $orange; }
-
     &.blue { color: $blue; }
-
     &.purple { color: $purple; }
 
     .icon {
       font-size: 100%;
       border: 1px solid currentColor;
-      margin-right: 5px;
+      margin-right: 10px;
       padding: 2.5px;
     }
 
@@ -53,13 +50,9 @@ button {
     padding: 5px 20px;
 
     &.green { @include defaultButton($green); }
-
     &.orange { @include defaultButton($orange); }
-
     &.blue { @include defaultButton($blue); }
-
     &.cyan { @include defaultButton($cyan); }
-
     &.purple { @include defaultButton($purple); }
   }
 

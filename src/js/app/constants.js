@@ -10,6 +10,7 @@ export const SET_QUERY_VALUE = "SET_QUERY_VALUE";
 export const TOGGLE_STEP_METHOD = "TOGGLE_STEP_METHOD";
 export const EVALUATE_STEP_RUNNER = "EVALUATE_STEP_RUNNER";
 export const EXECUTE_QUERY = "EXECUTE_QUERY";
+
 export const THEME = {
   scheme: "default",
   author: "chris kempson (http://chriskempson.com)",
@@ -39,4 +40,6 @@ export const EVENT = {
   PREVIOUS_QUERY: "PREVIOUS_QUERY",
   NEXT_QUERY: "NEXT_QUERY",
   EXECUTE_QUERY: "EXECUTE_QUERY",
+  SHOW_PAYLOAD: "SHOW_PAYLOAD",
+  SHOW_RUNNER: "SHOW_RUNNER",
 };

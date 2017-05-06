@@ -40,6 +40,13 @@ function createMenu() {
       ],
     },
     {
+      label: "Panels",
+      submenu: [
+        { label: "Show Payload", accelerator: "Command+P", click: function() { mainWindow.webContents.send("KEYBOARD", "SHOW_PAYLOAD"); }},
+        { label: "Show Runner", accelerator: "Command+L", click: function() { mainWindow.webContents.send("KEYBOARD", "SHOW_RUNNER"); }},
+      ],
+    },
+    {
       label: "Queries",
       submenu: [
         { label: "Previous Step", accelerator: "Command+K", click: function() { mainWindow.webContents.send("KEYBOARD", "PREVIOUS_STEP"); }},

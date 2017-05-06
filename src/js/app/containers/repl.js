@@ -2,11 +2,11 @@
 import React from "react";
 import { connect } from "react-redux";
 import classnames from "classnames";
-import _ from "../../utils";
+import _ from "js/utils";
 
 // app
-import { getCurrents, payloadInResponseContext } from "../../globals";
-import { THEME } from "../constants";
+import { getCurrents, payloadInResponseContext } from "js/globals";
+import { THEME } from "js/app/constants";
 import JSONTree from "react-json-tree";
 import Icon from "js/app/components/icon";
 import Editor from "js/app/components/editor";
@@ -14,6 +14,11 @@ import Curl from "js/app/components/curl";
 
 // styles
 import "scss/containers/repl";
+
+// JSONTree customisation
+THEME.base0D = "#666666";
+const getItemString = (type, data, itemType, itemString) => <span>{itemType}</span>;
+const shouldExpandNode = (keyName, data, level) => true;
 
 const constructCURL = (method, url, payload, prevResponse) => {
   method = method.toUpperCase();
@@ -49,10 +54,10 @@ const mapStateToProps = (state = {}) => {
     error;
 
   let prevResponse = stepCount === 0 ? "" : state.queries[queryCount].steps[stepCount - 1].response.text;
-  prevResponse = prevResponse === "" ? {} : JSON.parse(prevResponse);
 
   if (step.evaluation.response) {
     try {
+      prevResponse = prevResponse === "" ? {} : JSON.parse(prevResponse);
       response = step.evaluation.response;
       modified = true;
     } catch (e) {
@@ -113,7 +118,7 @@ const Repl = ({ method, url, payload, response, status, time, assertions, error,
       </div>
     )}
 
-    {!fetching && response && <JSONTree data={response} theme={THEME} hideRoot />}
+    {!fetching && response && <JSONTree data={response} theme={THEME} getItemString={getItemString} shouldExpandNode={shouldExpandNode} hideRoot />}
 
     <div className="response-meta">
       {currentStatus(response, error, modified, fetching)}
