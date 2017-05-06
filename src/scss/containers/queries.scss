@@ -11,7 +11,6 @@
       overflow: hidden;
       align-items: center;
       position: relative;
-      text-transform: uppercase;
 
       input {
         font: 14px $font-sans;
@@ -23,7 +22,6 @@
         padding: 10px 30px 10px 10px;
         text-overflow: ellipsis;
         overflow: hidden;
-        text-transform: uppercase;
 
         &:focus {
           background-color: fade-out($vanta, 0.5);
@@ -32,27 +30,34 @@
       }
 
       .icon {
-        opacity: 0;
-        transition: opacity 0.2s linear;
         color: fade-out($text-grey, 0.5);
-        position: absolute;
+        margin-right: 10px;
+        opacity: 1;
+        font-size: 150%;
       }
     }
 
     &.active {
+      $highlight: darken($grey, 20%);
+
       background-color: $vanta;
+      margin-bottom: 10px;
+
+      &:not(:first-child) { margin-top: 10px; }
 
       .title {
         padding: 0;
+        background: linear-gradient(to bottom, $highlight, darken($highlight, 5%));
 
         input { color: $text-light; }
 
-        .icon { right: 10px; }
+        .icon { margin: 0 0 0 10px; }
 
-        &:hover {
-          input { font-style: italic; }
-          .icon { opacity: 1; }
-        }
+        &:hover { input { font-style: italic; } }
+      }
+
+      .buttons {
+        border-top: 1px solid $highlight;
       }
     }
 

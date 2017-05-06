@@ -29,8 +29,8 @@ const Query = ({ query, queryIdx, isActive, addStep, activateStep, removeStep, r
   return isActive ? (
     <div className={classnames("query", "active")}>
       <div className="title">
+        <Icon type="folder-open" />
         <input type="text" value={query.title} onChange={event => updateQueryName(event, queryIdx)} />
-        <Icon type="edit" />
       </div>
       {query.steps.map((step, idx) => (
         <QueryStep step={step} key={idx} stepIdx={idx} isActive={idx === query.currentStep} activate={() => activateStep(queryIdx, idx)} remove={() => removeStep(queryIdx, idx)} reorder={(from, to) => reorderStep(queryIdx, from, to)} />)
@@ -41,7 +41,7 @@ const Query = ({ query, queryIdx, isActive, addStep, activateStep, removeStep, r
     </div>
   ) : (
     <div className={classnames("query")} onClick={() => activateQuery(queryIdx)}>
-      <div className="title"> {query.title} </div>
+      <div className="title"><Icon type="folder-closed" /> {query.title} </div>
     </div>
   );
 };

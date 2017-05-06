@@ -20,6 +20,8 @@
   white-space: pre-wrap;
   line-height: 1.5em;
   word-wrap: break-word;
+  -webkit-tab-size: 2;
+  tab-size: 2;
 }
 
 .CodeFlask__textarea {

@@ -26,24 +26,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-type::before {
+.icon-folder-closed::before {
   content: "\e904";
 }
 
-.icon-write::before {
-  content: "\e904";
-}
-
-.icon-compose::before {
-  content: "\e904";
-}
-
-.icon-edit::before {
-  content: "\e904";
-}
-
-.icon-blog::before {
-  content: "\e904";
+.icon-folder-open::before {
+  content: "\e906";
 }
 
 .icon-cross::before {
@@ -52,6 +40,10 @@
 
 .icon-plus::before {
   content: "\e902";
+}
+
+.icon-edit::before {
+  content: "\e907";
 }
 
 .icon-check::before {
