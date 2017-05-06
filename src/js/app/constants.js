@@ -30,3 +30,9 @@ export const THEME = {
   base0E: "#ba8baf",
   base0F: "#a16946"
 };
+
+export const EVENT = {
+  KEYBOARD: "KEYBOARD",
+  PREVIOUS_STEP: "PREVIOUS_STEP",
+  NEXT_STEP: "NEXT_STEP",
+};

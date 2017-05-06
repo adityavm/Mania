@@ -16,6 +16,7 @@ function createWindow () {
   }));
 
   createMenu(); // create menu
+  mainWindow.webContents.openDevTools();
 
   mainWindow.on("closed", function () {
     mainWindow = null;
@@ -37,6 +38,13 @@ function createMenu() {
         { label: "Hide", accelerator: "Command+H", selector: "hide:" },
         { type: "separator" },
         { label: "Quit", accelerator: "Command+Q", click: function() { app.quit(); }},
+      ],
+    },
+    {
+      label: "Query",
+      submenu: [
+        { label: "Previous Step", accelerator: "Command+I", click: function() { mainWindow.webContents.send("KEYBOARD", "PREVIOUS_STEP"); }},
+        { label: "Next Step", accelerator: "Command+J", click: function() { mainWindow.webContents.send("KEYBOARD", "NEXT_STEP"); }},
       ],
     },
     {

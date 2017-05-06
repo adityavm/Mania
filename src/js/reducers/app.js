@@ -130,6 +130,8 @@ const evaluateAgainstResponse = (state = {}, query, step) => {
 const AppState = (state, action) => {
   let newState = state || createStateObject();
 
+  console.log(JSON.stringify(action));
+
   if (action.type === ADD_STEP)                 return addStep(newState, action.query);
   if (action.type === REMOVE_STEP)              return removeStep(newState, action.query, action.step);
   if (action.type === ACTIVATE_STEP)            return activateStep(newState, action.query, action.step);

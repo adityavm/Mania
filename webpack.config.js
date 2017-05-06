@@ -52,6 +52,7 @@ var cfg = {
     extensions: ["", ".js", ".scss", ".sass"],
     root: [srcDir],
   },
+  target: "electron",
   node: {
     __dirname: false,
     __filename: false,
