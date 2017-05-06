@@ -2,59 +2,16 @@
 import React from "react";
 import { connect } from "react-redux";
 import q from "q";
-import _ from "../../../utils";
+import _ from "js/utils";
 
 // app
-import { setQueryStepValue, evaluateStepRunner } from "js/app/actions/stepActions";
 import { executeStep } from "js/globals";
+import { executeQuery } from "js/reducers/helpers";
 import Button from "js/app/components/button";
 
 // style
 import "scss/components/button";
 
-// execute a whole query
-const executeQuery = (dispatch, queryIdx, query) => {
-
-  const constructResponseObj = (data, startTime) => {
-    const timeDiff = new Date() - startTime;
-    return {
-      text: JSON.stringify(data.response),
-      time: timeDiff,
-      status: data.status,
-    };
-  };
-
-  // needs response so that it can make next call
-  // before state is officially updated
-  const execute = (query, queryObj, step, stepObj, dispatch, response = {}) => {
-    const startTime = new Date();
-
-    const dispatchAssign = data => {
-      let obj = constructResponseObj(data, startTime);
-      dispatch(setQueryStepValue(query, step, "response", obj));
-    };
-
-    dispatch(setQueryStepValue(query, step, "fetching", true));
-
-    let promise = executeStep(queryObj, stepObj, response);
-    promise
-      .then(dispatchAssign, dispatchAssign)
-      .finally(data => {
-        dispatch(setQueryStepValue(query, step, "fetching", false));
-        dispatch(evaluateStepRunner(query, step));
-      });
-
-    return promise;
-  };
-
-  // construct promise chain and run
-  let request = q({});
-  query.steps.forEach((step, stepIdx) => {
-    request = request.then(promise => execute(queryIdx, query, stepIdx, step, dispatch, promise.response));
-  });
-};
-
-// redux
 
 const mapStateToProps = (state = {}) => ({
   queries: state.queries,
