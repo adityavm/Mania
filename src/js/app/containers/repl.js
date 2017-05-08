@@ -18,7 +18,13 @@ import "scss/containers/repl";
 // JSONTree customisation
 THEME.base0D = "#666666";
 const getItemString = (type, data, itemType, itemString) => <span>{itemType}</span>;
-const shouldExpandNode = (keyName, data, level) => true;
+const shouldExpandNode = (keyName, data, level) => {
+  let ret = false;
+  if (Array.isArray(data) && data.length > 10) ret = false; // if [] > 10 items
+  else if (typeof data === "object" && Object.keys(data).length > 10) ret = false; // if {} > 10 items
+  else ret = true;
+  return ret;
+};
 
 const constructCURL = (method, url, payload, prevResponse) => {
   method = method.toUpperCase();
