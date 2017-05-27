@@ -1,12 +1,12 @@
 <p align="center">
   <img src="http://i.imgur.com/X52iKPr.png" width="64" height="64"></img>
-  <h3 align="center">Mania v0.9.6</h3>
+  <h3 align="center">Mania</h3>
   <p align="center">Your besty for REST calls.</p>
 </p>
 
 ![Mania](screenshot.png)
 
-[![Build Status](https://img.shields.io/travis/adityavm/Mania/master.svg?style=flat-square)](https://travis-ci.org/adityavm/Mania)
+[![Build Status](https://img.shields.io/travis/adityavm/Mania/master.svg?style=flat-square)](https://travis-ci.org/adityavm/Mania) ![Current Version](https://img.shields.io/github/release/adityavm/Mania.svg?style=flat-square&colorB=da6248&label=version)
 
 
 ## Table of Contents
