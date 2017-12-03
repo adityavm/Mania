@@ -8,7 +8,6 @@
   border-color: $stroke-light-grey;
   overflow: hidden;
   font: 11px / 1.4em Hack, Inconsolata, Consolas, Monaco, monospace;
-  padding: 5px;
   display: flex;
   flex-direction: column;
 
@@ -36,6 +35,7 @@
     flex: none;
     justify-content: flex-end;
     padding: 5px 0;
+    background-color: $base07;
 
     .meta-info {
       font: 12px $font-sans;
@@ -97,6 +97,7 @@
     max-height: 40px;
     transition: max-height 0.2s linear;
     background-color: $base06;
+    padding: 5px;
 
     .title {
       display: flex;
@@ -115,7 +116,7 @@
     }
 
     textarea {
-      background-color: transparent;
+      background-color: fade-out($white, 0.5);
       border: 0;
       flex: 1;
       line-height: 1.5em;
@@ -135,7 +136,7 @@
     flex: 1;
     margin: 0 !important;
     overflow-y: auto;
-    padding: 0 5px 0 0 !important;
+    padding: 5px 5px 0 !important;
   }
 
   .response-actions + ul { padding-top: 10px !important; }

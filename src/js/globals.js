@@ -35,7 +35,7 @@ const executeStep = (query, step, prevResponse) => {
   let payload, payloadInContext;
 
   try {
-    payload = step.payload || {},
+    payload = step.payload.trim() || {},
     payloadInContext = payloadInResponseContext(payload, prevResponse);  // modify payload in context of previous response
   } catch (e) {
     payloadInContext = {};
