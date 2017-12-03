@@ -1,6 +1,6 @@
 {
   "name": "Mania",
-  "version": "0.9.6",
+  "version": "0.9.7",
   "description": "Your besty for REST calls.",
   "repository": "https://github.com/adityavm/Mania",
   "main": "app.js",
